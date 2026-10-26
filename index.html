@@ -38,8 +38,6 @@
       background:
         repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 64px, rgba(0,0,0,.035) 64px 128px),
         var(--turf);
-      border-bottom: 6px solid var(--chalk);
-      box-shadow: 0 6px 0 var(--turf-dark);
       position: relative; overflow: hidden;
     }
     .field::after { /* boundary rope sweeping through */
@@ -52,7 +50,7 @@
     .top a.follow { text-decoration: none; color: var(--chalk); border: 2px solid var(--chalk); border-radius: 999px; padding: 7px 16px; font-size: 15px; }
     .top a.follow:hover { background: var(--chalk); color: var(--turf); }
 
-    .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; padding: 28px var(--gutter) 88px; position: relative; z-index: 1; }
+    .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; padding: 20px var(--gutter) 64px; position: relative; z-index: 1; }
     .hero h1 { font-size: clamp(64px, 10.5vw, 148px); text-transform: none; }
     .hero .lead { font-size: 21px; margin-top: 26px; max-width: 28em; color: #E8F1EA; }
     .hero .soon { margin-top: 30px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-weight: 600; }
@@ -69,7 +67,7 @@
     .gd-body { display: grid; grid-template-columns: 1fr 1fr; }
     .map { background: #EAF2EA; border-right: 3px solid var(--navy); position: relative; }
     .map svg { display: block; width: 100%; height: 100%; min-height: 260px; }
-    .checkin { position: absolute; left: 10px; bottom: 10px; right: 10px; background: var(--navy); color: var(--chalk); font-size: 13px; font-weight: 600; border-radius: 10px; padding: 7px 10px; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+    .checkin { position: absolute; left: 10px; top: 10px; right: 10px; background: var(--navy); color: var(--chalk); font-size: 13px; font-weight: 600; border-radius: 10px; padding: 7px 10px; opacity: 0; transform: translateY(-6px); transition: opacity .3s, transform .3s; }
     .checkin.on { opacity: 1; transform: none; }
     .players { list-style: none; margin: 0; padding: 6px 16px; }
     .players li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
@@ -96,28 +94,59 @@
     .gd-summary .hint { color: var(--muted); font-weight: 500; }
 
     /* ---------- Sections ---------- */
-    section { padding: 104px 0; }
-    .head { max-width: 680px; margin-bottom: 48px; }
+    section { padding: 72px 0; }
+    .head { max-width: 760px; margin-bottom: 32px; }
     .head h2 { font-size: clamp(44px, 6vw, 76px); }
-    .head p { color: var(--navy-soft); font-size: 19px; margin-top: 18px; }
+    .head p { color: var(--navy-soft); font-size: 19px; margin-top: 14px; }
 
-    /* Game day timeline */
-    ol.day { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
-    ol.day::before { content: ''; position: absolute; left: 0; right: 0; top: 13px; border-top: 3px dashed var(--navy); }
-    ol.day li { padding-right: 32px; position: relative; }
-    ol.day .marker { width: 30px; height: 30px; border-radius: 50%; background: var(--ball); border: 4px solid var(--chalk); box-shadow: 0 0 0 3px var(--navy); position: relative; }
-    ol.day .time { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; color: var(--turf); margin-top: 22px; }
-    ol.day h3 { font-size: 40px; margin: 6px 0 12px; }
-    ol.day p { color: var(--navy-soft); max-width: 22em; }
+    /* Scoreboard ticker */
+    .ticker { background: var(--navy); color: var(--chalk); overflow: hidden; border-bottom: 3px solid var(--navy); }
+    .ticker .track { display: flex; width: max-content; animation: tick 38s linear infinite; }
+    .ticker:hover .track { animation-play-state: paused; }
+    .ticker ul { list-style: none; display: flex; margin: 0; padding: 14px 0; }
+    .ticker li { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; padding: 0 28px; white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+    .ticker li::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c, #6DB883); }
+    @keyframes tick { to { transform: translateX(-50%); } }
+
+    /* Try-it boards */
+    .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .board { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .board .when { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; color: var(--turf); }
+    .board h3 { font-size: 36px; }
+    .board .say { color: var(--navy-soft); font-size: 16px; }
+    .votes { display: grid; gap: 8px; }
+    .opt { width: 100%; display: grid; gap: 6px; border: 2px solid var(--navy); border-radius: 12px; padding: 10px 12px; background: var(--paper); text-align: left; color: var(--navy); }
+    .opt:hover { background: var(--chalk); }
+    .opt[aria-pressed=true] { background: var(--turf-soft); border-color: var(--turf); }
+    .opt .row { display: flex; justify-content: space-between; gap: 12px; font-weight: 700; }
+    .opt .n { color: var(--muted); font-weight: 600; }
+    .opt .bar { height: 8px; border-radius: 999px; background: var(--grey-soft); overflow: hidden; }
+    .opt .bar i { display: block; height: 100%; background: var(--turf); border-radius: 999px; transition: width .35s; }
+    .result { margin-top: auto; font-weight: 700; color: var(--turf); min-height: 1.6em; }
+    .split label { display: grid; gap: 4px; font-weight: 600; font-size: 15px; }
+    .split label span { display: flex; justify-content: space-between; }
+    .split label b { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; }
+    .split input[type=range] { accent-color: var(--ball); width: 100%; }
+    .each { margin-top: auto; background: var(--navy); color: var(--chalk); border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .each strong { font-family: 'Barlow Condensed', sans-serif; font-size: 44px; line-height: 1; }
+    .each span { font-size: 14px; color: #C9D2DE; text-align: right; }
+    .quiet-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .quiet-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 2px solid var(--line); border-radius: 12px; padding: 8px 10px; transition: border-color .3s, background-color .3s; }
+    .quiet-list li.done { border-color: var(--turf); background: var(--turf-soft); }
+    .quiet-list .who { font-weight: 700; display: grid; line-height: 1.2; }
+    .quiet-list .who small { font-weight: 500; color: var(--muted); font-size: 13.5px; }
+    .poke { border: 0; background: var(--ball); color: #fff; font-weight: 700; border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+    .poke:hover { background: #8F1E17; }
+    .poke:disabled { background: var(--turf); cursor: default; }
 
     /* Sport switcher */
     section.sports { background: var(--navy); color: var(--chalk); }
     section.sports .head p { color: #C9D2DE; }
-    .switch { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+    .switch { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
     .switch button { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; padding: 8px 22px; border-radius: 999px; border: 2px solid var(--chalk); background: transparent; color: var(--chalk); }
     .switch button:hover { background: rgba(245,247,242,.12); }
     .switch button[aria-pressed=true] { background: var(--chalk); color: var(--navy); }
-    .stage { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+    .stage { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
     .pitch { background: var(--turf); border-radius: 18px; border: 3px solid var(--chalk); aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden;
       background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 40px, rgba(0,0,0,.04) 40px 80px); }
     .pitch.clay { background-color: #B5562F; }
@@ -145,27 +174,26 @@
 
     @media (max-width: 1000px) {
       .hero { grid-template-columns: 1fr; gap: 44px; }
+      .boards { grid-template-columns: 1fr 1fr; }
+      .board.wide { grid-column: 1 / -1; }
       .stage { grid-template-columns: 1fr; gap: 28px; }
       .launch { grid-template-columns: 1fr; gap: 28px; }
     }
     @media (max-width: 720px) {
       :root { --gutter: 16px; }
-      section { padding: 72px 0; }
+      section { padding: 56px 0; }
       .gd-body { grid-template-columns: 1fr; }
       .map { border-right: 0; border-bottom: 3px solid var(--navy); }
       .map svg { min-height: 220px; }
-      ol.day { grid-template-columns: 1fr; gap: 34px; padding-left: 44px; }
-      ol.day::before { left: 13px; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 3px dashed var(--navy); }
-      ol.day li { padding-right: 0; }
-      ol.day .marker { position: absolute; left: -44px; top: 0; }
-      ol.day .time { margin-top: 0; }
+      .boards { grid-template-columns: 1fr; gap: 20px; }
+      .ticker li { font-size: 19px; padding: 0 20px; }
       .gameday { box-shadow: 7px 7px 0 var(--navy); }
       .gd-head h2 { font-size: 26px; }
       .clock { font-size: 22px; min-width: 96px; }
       .switch button { font-size: 21px; padding: 6px 16px; }
       .gd-summary { flex-direction: column; gap: 2px; }
     }
-    @media (prefers-reduced-motion: reduce) { .checkin, .avatar { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .checkin, .avatar, .opt .bar i, .quiet-list li { transition: none; } .ticker .track { animation: none; } }
   </style>
 </head>
 <body>
@@ -223,33 +251,62 @@
     </div>
   </div>
 
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <ul>
+        <li style="--c:#6DB883">Priya is at the ground</li>
+        <li style="--c:#E2A11B">James is 9 min behind</li>
+        <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
+        <li style="--c:#B3261E">Tom got poked</li>
+        <li style="--c:#6DB883">Tom is on the way</li>
+        <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
+        <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
+        <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
+      </ul>
+      <ul>
+        <li style="--c:#6DB883">Priya is at the ground</li>
+        <li style="--c:#E2A11B">James is 9 min behind</li>
+        <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
+        <li style="--c:#B3261E">Tom got poked</li>
+        <li style="--c:#6DB883">Tom is on the way</li>
+        <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
+        <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
+        <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
+      </ul>
+    </div>
+  </div>
+
   <main>
-    <section aria-labelledby="gameday-h">
+    <section aria-labelledby="boards-h">
       <div class="wrap">
         <div class="head">
-          <h2 id="gameday-h">From "who's in?" to the first ball</h2>
-          <p>Group chats are good at saying yes and bad at showing up. Play Onside follows a game from the plan to the ground.</p>
+          <h2 id="boards-h">Group chats say yes. Play Onside shows up.</h2>
+          <p>Everything between "who's in?" and the first ball, in one place. Have a go.</p>
         </div>
-        <ol class="day">
-          <li>
-            <div class="marker" aria-hidden="true"></div>
-            <div class="time">During the week</div>
-            <h3>Plan it together</h3>
-            <p>Start a circle, pick a time and a ground, and vote on it. Whoever books it, the cost is split in the app.</p>
-          </li>
-          <li>
-            <div class="marker" aria-hidden="true"></div>
-            <div class="time">30 minutes before</div>
-            <h3>Everyone checks in</h3>
-            <p>Each player confirms they're on the way, running late or out. Anyone quiet gets a nudge.</p>
-          </li>
-          <li>
-            <div class="marker" aria-hidden="true"></div>
-            <div class="time">At the ground</div>
-            <h3>See who's arriving</h3>
-            <p>Players who choose to share appear on the map, only for the game. Afterwards it goes back to private.</p>
-          </li>
-        </ol>
+        <div class="boards">
+          <article class="board" aria-labelledby="vote-h">
+            <div class="when">During the week</div>
+            <h3 id="vote-h">Pick a time</h3>
+            <p class="say">The circle votes, and the time with the most players wins.</p>
+            <div class="votes" id="votes" role="group" aria-label="Vote for a time"></div>
+            <p class="result" id="vote-result" aria-live="polite"></p>
+          </article>
+          <article class="board split" aria-labelledby="split-h">
+            <div class="when">Once it's booked</div>
+            <h3 id="split-h">Split the cost</h3>
+            <p class="say">Ravi booked the ground. Everyone pays him back their share in the app.</p>
+            <label><span>Ground hire <b id="hire-out">$120</b></span><input type="range" id="hire" min="40" max="400" step="10" value="120" /></label>
+            <label><span>Players <b id="heads-out">8</b></span><input type="range" id="heads" min="2" max="22" step="1" value="8" /></label>
+            <div class="each" aria-live="polite"><strong id="each">$15</strong><span id="each-note">each, paid back to Ravi</span></div>
+          </article>
+          <article class="board wide" aria-labelledby="poke-h">
+            <div class="when">30 minutes before</div>
+            <h3 id="poke-h">Poke the quiet ones</h3>
+            <p class="say">Said "in" on Thursday, silent since? One tap and they have to answer.</p>
+            <ul class="quiet-list" id="quiet"></ul>
+            <p class="result" id="poke-result" aria-live="polite"></p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -382,6 +439,68 @@
       }, reduce ? 20 : 140);
     });
     render();
+
+
+    // ---------- Try-it boards ----------
+    const times = [
+      { label: 'Saturday 2:00 pm', votes: 3 },
+      { label: 'Sunday 9:00 am', votes: 5 },
+      { label: 'Sunday 4:00 pm', votes: 2 },
+    ];
+    let mine = null;
+    const votes = $('votes');
+    function drawVotes() {
+      const total = times.reduce((n, t) => n + t.votes + (mine === t ? 1 : 0), 0);
+      votes.querySelectorAll('.opt').forEach((el, i) => {
+        const t = times[i], n = t.votes + (mine === t ? 1 : 0);
+        el.setAttribute('aria-pressed', String(mine === t));
+        el.querySelector('.n').textContent = `${n} ${n === 1 ? 'vote' : 'votes'}`;
+        el.querySelector('i').style.width = `${Math.round((n / total) * 100)}%`;
+      });
+      const counts = times.map((t) => t.votes + (mine === t ? 1 : 0));
+      const top = Math.max(...counts), leaders = times.filter((_, i) => counts[i] === top);
+      $('vote-result').textContent = !mine ? 'Tap a time to vote.'
+        : leaders.length > 1 ? `It's a tie at ${top}. One more vote decides it.`
+        : `${leaders[0].label} it is, with ${top} players in.`;
+    }
+    times.forEach((t) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opt';
+      b.innerHTML = `<span class="row"><span>${t.label}</span><span class="n"></span></span><span class="bar"><i></i></span>`;
+      b.addEventListener('click', () => { mine = mine === t ? null : t; drawVotes(); });
+      votes.appendChild(b);
+    });
+    drawVotes();
+
+    function drawSplit() {
+      const hire = +$('hire').value, heads = +$('heads').value;
+      $('hire-out').textContent = `$${hire}`; $('heads-out').textContent = heads;
+      const each = hire / heads;
+      $('each').textContent = `$${each % 1 ? each.toFixed(2) : each}`;
+    }
+    $('hire').addEventListener('input', drawSplit); $('heads').addEventListener('input', drawSplit); drawSplit();
+
+    const quiet = [
+      { name: 'Tom', note: 'Said "in" on Thursday', reply: 'On the way, 3 km out' },
+      { name: 'Aisha', note: 'Seen 2 hours ago', reply: 'Running 10 min late' },
+      { name: 'Ben', note: 'No reply since Monday', reply: "Can't make it, sorry" },
+    ];
+    let poked = 0;
+    quiet.forEach((q) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="who">${q.name}<small>${q.note}</small></span><button type="button" class="poke">Poke</button>`;
+      const btn = li.querySelector('button');
+      btn.addEventListener('click', () => {
+        btn.disabled = true; btn.textContent = 'Poked';
+        setTimeout(() => {
+          li.classList.add('done'); li.querySelector('small').textContent = q.reply; btn.textContent = 'Answered';
+          poked++;
+          $('poke-result').textContent = poked === quiet.length ? 'Everyone has answered. Now you know who\u2019s really coming.' : `${quiet.length - poked} still to answer.`;
+        }, reduce ? 0 : 700);
+      });
+      $('quiet').appendChild(li);
+    });
+    $('poke-result').textContent = '3 players haven\u2019t answered.';
 
     // ---------- Sport switcher ----------
     const chalk = '#F5F7F2';
