@@ -11,7 +11,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" />
   <style>
     :root {
       --chalk: #F5F7F2; --paper: #FFFFFF; --line: #DCE3DA;
@@ -139,24 +139,56 @@
     .poke:hover { background: #8F1E17; }
     .poke:disabled { background: var(--turf); cursor: default; }
 
+
+    /* ---------- The debrief: after the game ---------- */
+    section.pub { background: #1C1512; color: #F3E9DA; padding-top: 64px;
+      background-image: radial-gradient(900px 380px at 50% -40px, rgba(226,161,27,.28), transparent 70%),
+                        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 120px); }
+    .neon { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(64px, 9vw, 112px); line-height: 1; color: #FFE7B0; text-align: center;
+      text-shadow: 0 0 6px #FFC857, 0 0 18px #E2A11B, 0 0 42px #E2A11B, 0 0 80px rgba(179,38,30,.7); }
+    .pub-lead { text-align: center; color: #D9C9B2; font-size: 19px; margin: 10px auto 34px; max-width: 34em; }
+    .chalkboard { border: 14px solid #6B4423; border-radius: 10px; box-shadow: inset 0 0 0 3px #3E2614, 0 18px 0 #120D0B;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 60%), #24302B;
+      padding: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .chalk { font-family: 'Caveat', cursive; color: #F1F0E8; }
+    .slate { padding: 0 26px; }
+    .slate + .slate { border-left: 2px dashed rgba(241,240,232,.25); }
+    .slate h3 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 44px; color: #FFE7B0; line-height: 1; }
+    .slate .note { font-size: 15px; color: #C7CFC9; margin: 6px 0 14px; }
+    .chalk-btn { width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px dashed rgba(241,240,232,.22); color: #F1F0E8; padding: 9px 2px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: 'Caveat', cursive; font-size: 27px; line-height: 1.1; }
+    .chalk-btn:hover { color: #FFE7B0; }
+    .chalk-btn[aria-pressed=true] { color: #FFE7B0; }
+    .chalk-btn small { font-family: 'Barlow', sans-serif; font-size: 13px; color: #AEB8B2; display: block; }
+    .tally { display: inline-flex; gap: 3px; align-items: center; min-height: 24px; }
+    .tally svg { height: 24px; }
+    .star { color: #FFC857; font-size: 22px; visibility: hidden; }
+    .chalk-btn[aria-pressed=true] .star { visibility: visible; }
+    .pub-result { font-family: 'Caveat', cursive; font-size: 26px; color: #FFE7B0; margin-top: 12px; min-height: 1.3em; }
+    .shout-now { font-family: 'Caveat', cursive; font-size: 40px; color: #FFE7B0; line-height: 1.1; min-height: 1.2em; }
+    .rounds { list-style: none; margin: 8px 0 14px; padding: 0; }
+    .rounds li { display: flex; justify-content: space-between; font-family: 'Caveat', cursive; font-size: 26px; border-bottom: 1px dashed rgba(241,240,232,.22); padding: 4px 2px; }
+    .rounds li.up { color: #FFE7B0; }
+    .round-btn { border: 2px solid #FFE7B0; background: transparent; color: #FFE7B0; border-radius: 999px; padding: 8px 18px; font-weight: 700; }
+    .round-btn:hover { background: #FFE7B0; color: #1C1512; }
+    .pub-foot { text-align: center; color: #A89A86; font-size: 14px; margin-top: 30px; }
+
     /* Sport switcher */
-    section.sports { background: var(--navy); color: var(--chalk); }
-    section.sports .head p { color: #C9D2DE; }
+    section.sports { background: var(--paper); border-bottom: 3px solid var(--navy); }
     .switch { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-    .switch button { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; padding: 8px 22px; border-radius: 999px; border: 2px solid var(--chalk); background: transparent; color: var(--chalk); }
-    .switch button:hover { background: rgba(245,247,242,.12); }
-    .switch button[aria-pressed=true] { background: var(--chalk); color: var(--navy); }
+    .switch button { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; padding: 8px 22px; border-radius: 999px; border: 2px solid var(--navy); background: transparent; color: var(--navy); }
+    .switch button:hover { background: var(--chalk); }
+    .switch button[aria-pressed=true] { background: var(--navy); color: var(--chalk); }
     .stage { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
-    .pitch { background: var(--turf); border-radius: 18px; border: 3px solid var(--chalk); aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden;
+    .pitch { background: var(--turf); border-radius: 18px; border: 3px solid var(--navy); box-shadow: 7px 7px 0 var(--navy); aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden;
       background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 40px, rgba(0,0,0,.04) 40px 80px); }
     .pitch.clay { background-color: #B5562F; }
     .pitch.wood { background-color: #B98A52; background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 2px, transparent 2px 46px); }
     .pitch.lanes { background-color: #C89A5F; background-image: none; }
     .pitch svg { width: 92%; height: 92%; }
     .stage h3 { font-size: clamp(40px, 5vw, 60px); }
-    .stage .eg { font-size: 20px; color: #DCE3EC; margin-top: 16px; }
+    .stage .eg { font-size: 20px; color: var(--navy-soft); margin-top: 16px; }
     .stage .who { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .stage .who span { border: 1px solid rgba(245,247,242,.4); border-radius: 999px; padding: 4px 12px; font-size: 15px; color: #DCE3EC; }
+    .stage .who span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 15px; color: var(--navy-soft); background: var(--chalk); }
 
     /* Launch */
     .launch { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; align-items: end; }
@@ -175,6 +207,9 @@
     @media (max-width: 1000px) {
       .hero { grid-template-columns: 1fr; gap: 44px; }
       .boards { grid-template-columns: 1fr 1fr; }
+      .chalkboard { grid-template-columns: 1fr; }
+      .slate { padding: 18px 0; }
+      .slate + .slate { border-left: 0; border-top: 2px dashed rgba(241,240,232,.25); }
       .board.wide { grid-column: 1 / -1; }
       .stage { grid-template-columns: 1fr; gap: 28px; }
       .launch { grid-template-columns: 1fr; gap: 28px; }
@@ -186,6 +221,7 @@
       .map { border-right: 0; border-bottom: 3px solid var(--navy); }
       .map svg { min-height: 220px; }
       .boards { grid-template-columns: 1fr; gap: 20px; }
+      .chalkboard { padding: 16px; border-width: 10px; }
       .ticker li { font-size: 19px; padding: 0 20px; }
       .gameday { box-shadow: 7px 7px 0 var(--navy); }
       .gd-head h2 { font-size: 26px; }
@@ -310,6 +346,35 @@
       </div>
     </section>
 
+    <section class="pub" aria-labelledby="pub-h">
+      <div class="wrap">
+        <h2 class="neon" id="pub-h">The debrief</h2>
+        <p class="pub-lead">Game's done. Pick where you're heading, crown the player of the day, and keep the rounds fair.</p>
+        <div class="chalkboard">
+          <div class="slate">
+            <h3>Where to after?</h3>
+            <p class="note">Tap to vote. Most ticks wins.</p>
+            <div id="venues" role="group" aria-label="Vote for where to go after the game"></div>
+            <p class="pub-result" id="venue-result" aria-live="polite"></p>
+          </div>
+          <div class="slate">
+            <h3>Player of the day</h3>
+            <p class="note">Who starred today?</p>
+            <div id="potd" role="group" aria-label="Vote for player of the day"></div>
+            <p class="pub-result" id="potd-result" aria-live="polite"></p>
+          </div>
+          <div class="slate">
+            <h3>Whose shout?</h3>
+            <p class="note">Everyone buys a round in turn. We keep count.</p>
+            <p class="shout-now" id="shout-now" aria-live="polite"></p>
+            <ul class="rounds" id="rounds"></ul>
+            <button type="button" class="round-btn" id="next-round">Next round</button>
+          </div>
+        </div>
+        <p class="pub-foot">Play Onside is for adults 18 and over. Enjoy it responsibly.</p>
+      </div>
+    </section>
+
     <section class="sports" aria-labelledby="sports-h">
       <div class="wrap">
         <div class="head">
@@ -332,7 +397,7 @@
       <div class="wrap launch">
         <div class="head" style="margin-bottom:0">
           <h2 id="launch-h">Starting in Sydney, then everywhere you play</h2>
-          <p>We're launching with cricket in Sydney, then opening up across Australia, New Zealand, Asia and the US. For players aged 16 and over.</p>
+          <p>We're launching with cricket in Sydney, then opening up across Australia, New Zealand, Asia and the US. For players aged 18 and over.</p>
         </div>
         <div class="actions">
           <a class="btn primary" href="https://www.instagram.com/playonsideapp/">Follow on Instagram</a>
@@ -501,6 +566,65 @@
       $('quiet').appendChild(li);
     });
     $('poke-result').textContent = '3 players haven\u2019t answered.';
+
+
+    // ---------- The debrief ----------
+    const tallySvg = (n) => {
+      let out = '';
+      for (let g = 0; g < Math.floor(n / 5); g++) out += '<svg viewBox="0 0 30 24" aria-hidden="true"><path d="M4 2v20M10 2v20M16 2v20M22 2v20M1 20L27 4" stroke="#F1F0E8" stroke-width="2.4" stroke-linecap="round"/></svg>';
+      const r = n % 5;
+      if (r) out += `<svg viewBox="0 0 ${r * 6 + 2} 24" aria-hidden="true"><path d="${Array.from({ length: r }, (_, i) => `M${4 + i * 6} 2v20`).join('')}" stroke="#F1F0E8" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+      return out;
+    };
+    function chalkVote(boxId, resultId, items, render) {
+      let pick = null;
+      const box = $(boxId);
+      const draw = () => {
+        box.querySelectorAll('.chalk-btn').forEach((b, i) => {
+          const it = items[i], n = it.n + (pick === it ? 1 : 0);
+          b.setAttribute('aria-pressed', String(pick === it));
+          b.querySelector('.tally').innerHTML = tallySvg(n);
+          b.querySelector('.tally').setAttribute('aria-label', `${n} votes`);
+        });
+        const counts = items.map((it) => it.n + (pick === it ? 1 : 0));
+        const top = Math.max(...counts), lead = items.filter((_, i) => counts[i] === top);
+        $(resultId).textContent = pick ? (lead.length > 1 ? 'Dead heat. Someone break the tie!' : render(lead[0])) : '';
+      };
+      items.forEach((it) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'chalk-btn';
+        b.innerHTML = `<span>${it.label}${it.star ? ' <span class="star" aria-hidden="true">★</span>' : ''}${it.sub ? `<small>${it.sub}</small>` : ''}</span><span class="tally"></span>`;
+        b.addEventListener('click', () => { pick = pick === it ? null : it; draw(); });
+        box.appendChild(b);
+      });
+      draw();
+    }
+    chalkVote('venues', 'venue-result', [
+      { label: 'The Royal', sub: 'Pub, 5 min walk', n: 4 },
+      { label: 'Chai and Chaat', sub: 'Cafe, next to the oval', n: 3 },
+      { label: 'Spice Route', sub: 'Curry house, 10 min drive', n: 4 },
+    ], (v) => `${v.label} it is. See you there!`);
+    chalkVote('potd', 'potd-result', [
+      { label: 'Priya', sub: '42 off 30 balls', n: 3, star: true },
+      { label: 'Ravi', sub: '3 wickets for 18', n: 3, star: true },
+      { label: 'James', sub: 'Two great catches', n: 1, star: true },
+    ], (p) => `${p.label} takes the honours!`);
+
+    const crew = [
+      { name: 'Priya', rounds: 1 }, { name: 'Ravi', rounds: 0 }, { name: 'James', rounds: 1 }, { name: 'Tom', rounds: 0 },
+    ];
+    let shout = null;
+    function drawRounds() {
+      $('rounds').innerHTML = crew.map((c) => `<li class="${c === shout ? 'up' : ''}"><span>${c.name}</span><span>${c.rounds} ${c.rounds === 1 ? 'round' : 'rounds'}</span></li>`).join('');
+      $('shout-now').textContent = shout ? `${shout.name}'s shout!` : 'Who\u2019s up first?';
+    }
+    $('next-round').addEventListener('click', () => {
+      const fewest = Math.min(...crew.map((c) => c.rounds));
+      shout = crew.find((c) => c.rounds === fewest);
+      shout.rounds++;
+      drawRounds();
+    });
+    drawRounds();
 
     // ---------- Sport switcher ----------
     const chalk = '#F5F7F2';
