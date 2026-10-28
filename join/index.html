@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join a circle on Play Onside</title>
+  <meta name="description" content="You've been invited to join a circle on Play Onside: plan games with your crew and know who's really coming." />
+  <meta property="og:title" content="You're invited to a circle on Play Onside" />
+  <meta property="og:description" content="Tap to join your crew. Plan the game and know who's really coming." />
+  <meta name="theme-color" content="#14243A" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" />
+  <style>
+    :root { --chalk: #F5F7F2; --navy: #14243A; --muted: #56627A; --turf: #2E7D4F; --turf-dark: #23633E; --line: #DCE3DA; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { min-height: 100vh; background: var(--navy); color: var(--navy); font: 17px/1.55 'Barlow', system-ui, sans-serif; display: flex; flex-direction: column; justify-content: flex-end; }
+    .top { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 24px 24px; color: #fff; text-align: center; }
+    .top p { margin: 0; color: #C9D2DF; }
+    h1 { margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 44px; line-height: 0.95; }
+    .sheet { background: var(--chalk); border-radius: 28px 28px 0 0; padding: 28px 24px 40px; display: flex; flex-direction: column; gap: 14px; max-width: 520px; width: 100%; margin: 0 auto; }
+    .btn { display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 14px; background: var(--turf); color: #fff; font-weight: 700; font-size: 18px; text-decoration: none; }
+    .btn:hover { background: var(--turf-dark); }
+    .small { margin: 0; font-size: 15px; color: var(--muted); text-align: center; }
+    .code { font-family: ui-monospace, Menlo, monospace; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; font-size: 28px; font-weight: 700; letter-spacing: 3px; color: var(--navy); user-select: all; word-break: break-all; }
+    .bad { display: none; }
+    body.no-code .ok { display: none; }
+    body.no-code .bad { display: block; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <svg width="72" height="72" viewBox="0 0 32 32" aria-hidden="true"><defs><clipPath id="b"><circle cx="16" cy="16" r="13"/></clipPath></defs><circle cx="16" cy="16" r="14" fill="#B3261E" stroke="#F5F7F2" stroke-width="1.6"/><g clip-path="url(#b)" transform="rotate(-35 16 16)" fill="none" stroke="#F5F7F2" stroke-linecap="round"><path d="M0 16.6 Q16 13.6 32 16.6" stroke-width="1.5"/><path d="M0 14 Q16 11 32 14" stroke-width="1.1" stroke-dasharray="1.1 1.5"/><path d="M0 19.2 Q16 16.2 32 19.2" stroke-width="1.1" stroke-dasharray="1.1 1.5"/></g></svg>
+    <h1 class="ok">You're invited<br />to a circle</h1>
+    <h1 class="bad">This link is missing its code</h1>
+    <p class="ok">Your crew is using Play Onside to plan games and see who's really coming.</p>
+  </div>
+  <div class="sheet">
+    <a class="btn ok" id="open" href="playonside://join">Open in Play Onside</a>
+    <p class="small ok">Don't have the app yet? It's coming soon to iPhone and Android. Once you have it, tap this link again, or in the app go to <strong>Circles → Join with a code</strong> and type:</p>
+    <div class="code ok" id="code"></div>
+    <p class="small bad">Ask whoever sent it for a new invite link.</p>
+    <p class="small"><a href="../">What is Play Onside?</a></p>
+  </div>
+  <script>
+    (function () {
+      var c = new URLSearchParams(location.search).get('c') || '';
+      if (!/^[A-Za-z0-9]{6,32}$/.test(c)) { document.body.classList.add('no-code'); return; }
+      var app = 'playonside://join?c=' + c;
+      document.getElementById('open').href = app;
+      document.getElementById('code').textContent = c.length === 8 ? c.slice(0, 4) + ' ' + c.slice(4) : c;
+      // Try the app straight away; if it isn't installed, the page simply stays.
+      setTimeout(function () { location.href = app; }, 300);
+    })();
+  </script>
+</body>
+</html>
