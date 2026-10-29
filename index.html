@@ -290,7 +290,7 @@
   <div class="ticker" aria-hidden="true">
     <div class="track">
       <ul>
-        <li style="--c:#6DB883">Priya is at the ground</li>
+        <li style="--c:#6DB883">Amit is at the ground</li>
         <li style="--c:#E2A11B">James is 9 min behind</li>
         <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
         <li style="--c:#B3261E">Tom got poked</li>
@@ -300,7 +300,7 @@
         <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
       </ul>
       <ul>
-        <li style="--c:#6DB883">Priya is at the ground</li>
+        <li style="--c:#6DB883">Amit is at the ground</li>
         <li style="--c:#E2A11B">James is 9 min behind</li>
         <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
         <li style="--c:#B3261E">Tom got poked</li>
@@ -423,7 +423,7 @@
 
     // Minutes are relative to the start (-60 = an hour before). Distances in km.
     const players = [
-      { id: 'priya', name: 'Priya', ini: 'PK', from: [270, 22],  km: 4.2, leave: -50, arrive: -18, spot: [138, 120] },
+      { id: 'amit', name: 'Amit', ini: 'AS', from: [270, 22],  km: 4.2, leave: -50, arrive: -18, spot: [138, 120] },
       { id: 'ravi',  name: 'Ravi',  ini: 'RS', from: [24, 238],  km: 6.0, leave: -42, arrive: -9,  spot: [166, 124] },
       { id: 'james', name: 'James', ini: 'JL', from: [18, 30],   km: 7.5, leave: -26, arrive: 9,   spot: [140, 148] },
       { id: 'tom',   name: 'Tom',   ini: 'TM', from: [286, 240], km: 3.0, leave: null, arrive: null, spot: [168, 146], quiet: true },
@@ -605,13 +605,13 @@
       { label: 'Spice Route', sub: 'Curry house, 10 min drive', n: 4 },
     ], (v) => `${v.label} it is. See you there!`);
     chalkVote('potd', 'potd-result', [
-      { label: 'Priya', sub: '42 off 30 balls', n: 3, star: true },
+      { label: 'Amit', sub: '42 off 30 balls', n: 3, star: true },
       { label: 'Ravi', sub: '3 wickets for 18', n: 3, star: true },
       { label: 'James', sub: 'Two great catches', n: 1, star: true },
     ], (p) => `${p.label} takes the honours!`);
 
     const crew = [
-      { name: 'Priya', rounds: 1 }, { name: 'Ravi', rounds: 0 }, { name: 'James', rounds: 1 }, { name: 'Tom', rounds: 0 },
+      { name: 'Amit', rounds: 1 }, { name: 'Ravi', rounds: 0 }, { name: 'James', rounds: 1 }, { name: 'Tom', rounds: 0 },
     ];
     let shout = null;
     function drawRounds() {
