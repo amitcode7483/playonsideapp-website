@@ -117,11 +117,28 @@
     @media (max-width: 600px) { .phones figure, .phones img { width: 210px; } }
 
     /* Flyers */
-    .flyer-row { display: flex; gap: 28px; flex-wrap: wrap; }
-    .flyer { display: flex; flex-direction: column; gap: 12px; width: 230px; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; }
-    .flyer img { width: 230px; height: auto; border: 3px solid var(--navy); border-radius: 8px; box-shadow: 6px 6px 0 var(--navy); transition: transform .15s; }
-    .flyer:hover img { transform: translate(-2px, -2px); }
-    .flyer b { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 22px; color: var(--navy); }
+    section.flyers { background: var(--navy); color: var(--chalk); background-image: radial-gradient(rgba(255,255,255,.06) 1.5px, transparent 1.5px); background-size: 22px 22px; }
+    .flyer-band { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; }
+    .flyer-copy .kicker { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; color: #FFD166; margin-bottom: 10px; }
+    .flyer-copy h2 { font-size: clamp(44px, 6vw, 72px); color: var(--chalk); }
+    .flyer-copy p { color: #C9D2DF; font-size: 18px; margin-top: 18px; max-width: 30em; }
+    .flyer-points { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
+    .flyer-points li { padding-left: 30px; position: relative; color: var(--chalk); font-weight: 600; }
+    .flyer-points li::before { content: '✓'; position: absolute; left: 0; top: -1px; width: 22px; height: 22px; border-radius: 50%; background: var(--turf); color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+    .flyer-row { display: flex; gap: 32px; justify-content: center; }
+    .flyer { margin: 0; width: 240px; display: flex; flex-direction: column; gap: 16px; }
+    .flyer img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transition: transform .2s; background: #fff; }
+    .flyer.f1 img { transform: rotate(-3deg); }
+    .flyer.f2 img { transform: rotate(2.5deg) translateY(18px); }
+    .flyer a:hover img, .flyer a:focus-visible img { transform: rotate(0) translateY(-6px) scale(1.02); }
+    .flyer figcaption { display: flex; flex-direction: column; gap: 4px; margin-top: 18px; }
+    .flyer figcaption b { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; color: var(--chalk); }
+    .flyer figcaption span { color: #A9B4C6; font-size: 14.5px; }
+    .flyer .dl { align-self: flex-start; margin-top: 10px; background: #FFD166; color: var(--navy); text-decoration: none; font-weight: 700; border-radius: 999px; padding: 9px 18px; font-size: 15px; }
+    .flyer .dl::before { content: '↓ '; }
+    .flyer .dl:hover { background: #fff; }
+    .flyer .dl { white-space: nowrap; }
+    @media (max-width: 860px) { .flyer-band { grid-template-columns: 1fr; gap: 40px; } .flyer { width: 46%; } .flyer-row { gap: 8%; } .flyer figcaption b { font-size: 22px; } .flyer figcaption span { font-size: 13px; } .flyer .dl { padding: 8px 14px; font-size: 14px; } }
 
     /* Try-it boards */
     .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -420,6 +437,30 @@
       </div>
     </section>
 
+    <section class="flyers" aria-labelledby="flyers-h">
+      <div class="wrap flyer-band">
+        <div class="flyer-copy">
+          <div class="kicker">For your club</div>
+          <h2 id="flyers-h">Pin one up in the clubhouse</h2>
+          <p>Free A4 flyers, ready to print. Hand them out at the nets, stick one on the noticeboard, or send the PDF to your club's group. The QR code takes players straight here.</p>
+          <ul class="flyer-points">
+            <li>Real app screens, nothing mocked up</li>
+            <li>QR code straight to playonsideapp.com</li>
+          </ul>
+        </div>
+        <div class="flyer-row">
+          <figure class="flyer f1">
+            <a href="/media/flyers/Play-Onside-Flyer-2-page.pdf" aria-label="Download the 2-page handout (PDF)"><img src="/media/flyers/flyer-p1.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer front page: Know who's really coming" /></a>
+            <figcaption><b>2-page handout</b><span>Front and back · 0.8 MB</span><a class="dl" href="/media/flyers/Play-Onside-Flyer-2-page.pdf" download>Download PDF</a></figcaption>
+          </figure>
+          <figure class="flyer f2">
+            <a href="/media/flyers/Play-Onside-Flyer-4-page.pdf" aria-label="Download the 4-page flyer (PDF)"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer: from who's in to the first ball" /></a>
+            <figcaption><b>4-page flyer</b><span>Plus pages for captains and players · 1.4 MB</span><a class="dl" href="/media/flyers/Play-Onside-Flyer-4-page.pdf" download>Download PDF</a></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section aria-labelledby="launch-h">
       <div class="wrap launch">
         <div class="head" style="margin-bottom:0">
@@ -433,18 +474,6 @@
       </div>
     </section>
 
-    <section class="flyers" aria-labelledby="flyers-h">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="flyers-h">Print a flyer for your club</h2>
-          <p>Pin one up in the clubhouse, or hand them out at the nets. A4, ready to print.</p>
-        </div>
-        <div class="flyer-row">
-          <a class="flyer" href="/media/flyers/Play-Onside-Flyer-2-page.pdf"><img src="/media/flyers/flyer-p1.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer, front page" /><span><b>2-page handout</b> PDF, 0.8 MB</span></a>
-          <a class="flyer" href="/media/flyers/Play-Onside-Flyer-4-page.pdf"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer, how it works page" /><span><b>4-page flyer</b> PDF, 1.4 MB · for captains and players</span></a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site">
