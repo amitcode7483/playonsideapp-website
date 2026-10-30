@@ -461,41 +461,29 @@
     const GROUND = { x: 152, y: 133 };
     const COLORS = { here: '#2E7D4F', way: '#2E7D4F', late: '#E2A11B', out: '#B3261E', quiet: '#8A94A6' };
 
-    // Minutes are relative to the start (-60 = an hour before). Distances in km.
+    // Minutes are relative to the start (-60 = an hour before). Check-in opens 30 minutes
+    // before; players tap On my way, Running late or I'm here (no location tracking).
     const players = [
-      { id: 'amit', name: 'Amit', ini: 'AS', from: [270, 22],  km: 4.2, leave: -50, arrive: -18, spot: [138, 120] },
-      { id: 'ravi',  name: 'Ravi',  ini: 'RS', from: [24, 238],  km: 6.0, leave: -42, arrive: -9,  spot: [166, 124] },
-      { id: 'james', name: 'James', ini: 'JL', from: [18, 30],   km: 7.5, leave: -26, arrive: 9,   spot: [140, 148] },
-      { id: 'tom',   name: 'Tom',   ini: 'TM', from: [286, 240], km: 3.0, leave: null, arrive: null, spot: [168, 146], quiet: true },
+      { id: 'amit',  name: 'Amit',  ini: 'AS', way: -28, here: -12, spot: [138, 120] },
+      { id: 'ravi',  name: 'Ravi',  ini: 'RS', way: -24, here: -4,  spot: [166, 124] },
+      { id: 'james', name: 'James', ini: 'JL', late: -14, lateMins: 10, spot: [140, 148] },
+      { id: 'tom',   name: 'Tom',   ini: 'TM', quiet: true, spot: [168, 146] },
       { id: 'sam',   name: 'Sam',   ini: 'SA', out: true, why: 'Sore shoulder' },
     ];
 
     function state(p, t) {
       if (p.out) return { s: 'out', label: "Can't make it", detail: p.why };
-      if (p.leave === null) return { s: 'quiet', label: 'Not confirmed', detail: 'Said yes on Thursday' };
-      if (t < p.leave) return { s: 'quiet', label: 'Coming', detail: `Leaves in ${p.leave - t} min`, home: true };
-      const prog = Math.min(1, (t - p.leave) / (p.arrive - p.leave));
-      if (prog >= 1) return { s: 'here', label: 'Here', detail: 'At the ground', prog };
-      const km = (p.km * (1 - prog)).toFixed(1);
-      if (p.arrive > 0 && t >= -30) return { s: 'late', label: 'Running late', detail: `${km} km away, about ${p.arrive} min behind`, prog };
-      return { s: 'way', label: 'On the way', detail: `${km} km away`, prog };
+      if (p.here !== undefined && t >= p.here) return { s: 'here', label: 'Here', detail: "Tapped I'm here" };
+      if (p.way !== undefined && t >= p.way) return { s: 'way', label: 'On the way', detail: 'Tapped On my way' };
+      if (p.late !== undefined && t >= p.late) return { s: 'late', label: 'Running late', detail: `About ${p.lateMins} min late` };
+      if (t >= -30) return { s: 'quiet', label: 'In', detail: p.quiet ? 'Said in on Thursday. No check-in yet' : 'Got the check-in reminder' };
+      return { s: 'quiet', label: 'In', detail: 'Said in this week' };
     }
 
     const list = $('players'), dots = $('dots');
     players.forEach((p) => {
       const li = document.createElement('li');
       li.innerHTML = `<span class="avatar">${p.ini}</span><div><div class="p-name">${p.name}<span class="status"></span></div><div class="p-detail"></div></div>`;
-      if (p.quiet) {
-        const b = document.createElement('button');
-        b.className = 'nudge'; b.type = 'button'; b.textContent = `Nudge ${p.name}`;
-        b.addEventListener('click', () => {
-          const t = +$('time').value;
-          p.leave = t; p.arrive = t + 20;
-          b.remove(); render();
-          $('hint').textContent = `${p.name} confirmed and is on the way`;
-        });
-        li.querySelector('.p-detail').after(b);
-      }
       p.li = li; list.appendChild(li);
       if (!p.out) {
         const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -515,15 +503,14 @@
         tag.className = `status s-${st.s}`; tag.textContent = st.label;
         p.li.querySelector('.p-detail').textContent = st.detail;
         p.li.querySelector('.avatar').style.background = COLORS[st.s];
-        if (!p.out && p.leave !== null) coming++;
+        if (!p.out) coming++;
         if (st.s === 'here') here++;
         if (p.dot) {
-          const prog = st.prog ?? 0;
-          const [fx, fy] = p.from, [sx, sy] = p.spot;
-          const x = fx + (sx - fx) * prog, y = fy + (sy - fy) * prog;
-          p.dot.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-          p.dot.querySelector('circle').setAttribute('fill', COLORS[st.s]);
-          p.dot.style.opacity = p.leave === null ? 0.45 : 1;
+          // Only at the ground once they've said they're here.
+          const [sx, sy] = p.spot;
+          p.dot.setAttribute('transform', `translate(${sx} ${sy})`);
+          p.dot.querySelector('circle').setAttribute('fill', COLORS.here);
+          p.dot.style.opacity = st.s === 'here' ? 1 : 0;
         }
       });
       $('count').textContent = `${coming} of ${players.length} coming, ${here} here`;
@@ -540,7 +527,7 @@
       $('hint').textContent = 'Watch who checks in';
       timer = setInterval(() => {
         r.value = +r.value + 1; render();
-        if (+r.value >= 0) { stop(); $('hint').textContent = 'James is late and Tom never confirmed. Try nudging him.'; }
+        if (+r.value >= 0) { stop(); $('hint').textContent = 'James is 10 min late and Tom never checked in. Now you know, before the first ball.'; }
       }, reduce ? 20 : 140);
     });
     render();
