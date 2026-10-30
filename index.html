@@ -108,6 +108,21 @@
     .ticker li::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c, #6DB883); }
     @keyframes tick { to { transform: translateX(-50%); } }
 
+    /* Real app screens */
+    .phones { --edge: max(var(--gutter), calc((100vw - 1200px) / 2 + var(--gutter))); display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--edge); padding: 8px var(--edge) 26px; scrollbar-width: thin; }
+    .phones figure { margin: 0; flex: 0 0 auto; width: 250px; scroll-snap-align: start; }
+    .phones img { display: block; width: 250px; height: auto; border-radius: 30px; border: 6px solid var(--navy); box-shadow: 8px 8px 0 var(--navy); background: var(--navy); }
+    .phones figcaption { margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.45; }
+    .phones figcaption b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); }
+    @media (max-width: 600px) { .phones figure, .phones img { width: 210px; } }
+
+    /* Flyers */
+    .flyer-row { display: flex; gap: 28px; flex-wrap: wrap; }
+    .flyer { display: flex; flex-direction: column; gap: 12px; width: 230px; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; }
+    .flyer img { width: 230px; height: auto; border: 3px solid var(--navy); border-radius: 8px; box-shadow: 6px 6px 0 var(--navy); transition: transform .15s; }
+    .flyer:hover img { transform: translate(-2px, -2px); }
+    .flyer b { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 22px; color: var(--navy); }
+
     /* Try-it boards */
     .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .board { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
@@ -164,12 +179,6 @@
     .star { color: #FFC857; font-size: 22px; visibility: hidden; }
     .chalk-btn[aria-pressed=true] .star { visibility: visible; }
     .pub-result { font-family: 'Caveat', cursive; font-size: 26px; color: #FFE7B0; margin-top: 12px; min-height: 1.3em; }
-    .shout-now { font-family: 'Caveat', cursive; font-size: 40px; color: #FFE7B0; line-height: 1.1; min-height: 1.2em; }
-    .rounds { list-style: none; margin: 8px 0 14px; padding: 0; }
-    .rounds li { display: flex; justify-content: space-between; font-family: 'Caveat', cursive; font-size: 26px; border-bottom: 1px dashed rgba(241,240,232,.22); padding: 4px 2px; }
-    .rounds li.up { color: #FFE7B0; }
-    .round-btn { border: 2px solid #FFE7B0; background: transparent; color: #FFE7B0; border-radius: 999px; padding: 8px 18px; font-weight: 700; }
-    .round-btn:hover { background: #FFE7B0; color: #1C1512; }
     .pub-foot { text-align: center; color: #A89A86; font-size: 14px; margin-top: 30px; }
 
     /* Sport switcher */
@@ -292,8 +301,8 @@
       <ul>
         <li style="--c:#6DB883">Amit is at the ground</li>
         <li style="--c:#E2A11B">James is 9 min behind</li>
-        <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
-        <li style="--c:#B3261E">Tom got poked</li>
+        <li style="--c:#6DB883">Ground booked: $15 each</li>
+        <li style="--c:#E2A11B">Tom got a nudge</li>
         <li style="--c:#6DB883">Tom is on the way</li>
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
@@ -302,8 +311,8 @@
       <ul>
         <li style="--c:#6DB883">Amit is at the ground</li>
         <li style="--c:#E2A11B">James is 9 min behind</li>
-        <li style="--c:#6DB883">Ravi split the ground hire: $15 each</li>
-        <li style="--c:#B3261E">Tom got poked</li>
+        <li style="--c:#6DB883">Ground booked: $15 each</li>
+        <li style="--c:#E2A11B">Tom got a nudge</li>
         <li style="--c:#6DB883">Tom is on the way</li>
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
@@ -313,6 +322,24 @@
   </div>
 
   <main>
+    <section class="screens" aria-labelledby="screens-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="screens-h">See the real app</h2>
+          <p>Real screens from Play Onside: the Sunday Strikers' T20, 26 minutes before the first ball.</p>
+        </div>
+      </div>
+      <div class="phones" tabindex="0" aria-label="App screens, scroll sideways">
+        <figure><img src="/media/app/home.jpg" width="390" height="844" loading="lazy" alt="Home: next up, a T20 today, 11 of 11 in, with check-in buttons" /><figcaption><b>Next up</b> Who's in, the weather, and check-in when it's close.</figcaption></figure>
+        <figure><img src="/media/app/game.jpg" width="390" height="844" loading="lazy" alt="The game page: date, ground booked, directions, forecast and who's really coming" /><figcaption><b>Game day</b> Directions, forecast, and who's really coming.</figcaption></figure>
+        <figure><img src="/media/app/team-field.jpg" width="390" height="844" loading="lazy" alt="The team sheet: batting order and a cricket field with each fielder's spot" /><figcaption><b>The team</b> Batting order and the field, from the captain.</figcaption></figure>
+        <figure><img src="/media/app/after.jpg" width="390" height="844" loading="lazy" alt="After the game: who's keen and votes for the pub" /><figcaption><b>After the game</b> Who's keen, and where to.</figcaption></figure>
+        <figure><img src="/media/app/chat.jpg" width="390" height="844" loading="lazy" alt="The circle chat with the team sheet and after-game cards" /><figcaption><b>Your circle</b> Chat, polls, games and the team, together.</figcaption></figure>
+        <figure><img src="/media/app/games.jpg" width="390" height="844" loading="lazy" alt="Your games: waiting on you, today, and the week ahead" /><figcaption><b>Your games</b> Everything coming up, across every circle.</figcaption></figure>
+        <figure><img src="/media/app/stats.jpg" width="390" height="844" loading="lazy" alt="Your stats and badges" /><figcaption><b>Your record</b> Games, turning up, and badges.</figcaption></figure>
+      </div>
+    </section>
+
     <section aria-labelledby="boards-h">
       <div class="wrap">
         <div class="head">
@@ -329,17 +356,18 @@
           </article>
           <article class="board split" aria-labelledby="split-h">
             <div class="when">Once it's booked</div>
-            <h3 id="split-h">Split the cost</h3>
-            <p class="say">Ravi booked the ground. Everyone pays him back their share in the app.</p>
+            <h3 id="split-h">Ground booked</h3>
+            <p class="say">Ravi booked the ground. Work out the share, add it to the game, and everyone sees it before they say in.</p>
             <label><span>Ground hire <b id="hire-out">$120</b></span><input type="range" id="hire" min="40" max="400" step="10" value="120" /></label>
             <label><span>Players <b id="heads-out">8</b></span><input type="range" id="heads" min="2" max="22" step="1" value="8" /></label>
-            <div class="each" aria-live="polite"><strong id="each">$15</strong><span id="each-note">each, paid back to Ravi</span></div>
+            <div class="each" aria-live="polite"><strong id="each">$15</strong><span id="each-note">each · ✅ booked by Ravi</span></div>
           </article>
           <article class="board wide" aria-labelledby="poke-h">
-            <div class="when">30 minutes before</div>
-            <h3 id="poke-h">Poke the quiet ones</h3>
-            <p class="say">Said "in" on Thursday, silent since? One tap and they have to answer.</p>
+            <div class="when">Before the game</div>
+            <h3 id="poke-h">Nudge the quiet ones</h3>
+            <p class="say">Still on maybe, or haven't answered? One tap nudges them all.</p>
             <ul class="quiet-list" id="quiet"></ul>
+            <button type="button" class="poke" id="nudge-all" style="align-self:flex-start;padding:10px 18px;font-size:16px">Nudge all 3</button>
             <p class="result" id="poke-result" aria-live="polite"></p>
           </article>
         </div>
@@ -349,7 +377,7 @@
     <section class="pub" aria-labelledby="pub-h">
       <div class="wrap">
         <h2 class="neon" id="pub-h">The debrief</h2>
-        <p class="pub-lead">Game's done. Pick where you're heading, crown the player of the day, and keep the rounds fair.</p>
+        <p class="pub-lead">Game's done. Pick where you're heading, crown player of the match, and hand out the duck of the day.</p>
         <div class="chalkboard">
           <div class="slate">
             <h3>Where to after?</h3>
@@ -358,17 +386,16 @@
             <p class="pub-result" id="venue-result" aria-live="polite"></p>
           </div>
           <div class="slate">
-            <h3>Player of the day</h3>
+            <h3>Player of the match</h3>
             <p class="note">Who starred today?</p>
             <div id="potd" role="group" aria-label="Vote for player of the day"></div>
             <p class="pub-result" id="potd-result" aria-live="polite"></p>
           </div>
           <div class="slate">
-            <h3>Whose shout?</h3>
-            <p class="note">Everyone buys a round in turn. We keep count.</p>
-            <p class="shout-now" id="shout-now" aria-live="polite"></p>
-            <ul class="rounds" id="rounds"></ul>
-            <button type="button" class="round-btn" id="next-round">Next round</button>
+            <h3>Duck of the day</h3>
+            <p class="note">All in good fun: the howler of the day.</p>
+            <div id="duck" role="group" aria-label="Vote for duck of the day"></div>
+            <p class="pub-result" id="duck-result" aria-live="polite"></p>
           </div>
         </div>
         <p class="pub-foot">Play Onside is for adults 18 and over. Enjoy it responsibly.</p>
@@ -402,6 +429,19 @@
         <div class="actions">
           <a class="btn primary" href="https://www.instagram.com/playonsideapp/">Follow on Instagram</a>
           <a class="btn plain" href="mailto:playonsideapp@gmail.com">Email us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="flyers" aria-labelledby="flyers-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="flyers-h">Print a flyer for your club</h2>
+          <p>Pin one up in the clubhouse, or hand them out at the nets. A4, ready to print.</p>
+        </div>
+        <div class="flyer-row">
+          <a class="flyer" href="/media/flyers/Play-Onside-Flyer-2-page.pdf"><img src="/media/flyers/flyer-p1.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer, front page" /><span><b>2-page handout</b> PDF, 0.8 MB</span></a>
+          <a class="flyer" href="/media/flyers/Play-Onside-Flyer-4-page.pdf"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer, how it works page" /><span><b>4-page flyer</b> PDF, 1.4 MB · for captains and players</span></a>
         </div>
       </div>
     </section>
@@ -546,24 +586,22 @@
     $('hire').addEventListener('input', drawSplit); $('heads').addEventListener('input', drawSplit); drawSplit();
 
     const quiet = [
-      { name: 'Tom', note: 'Said "in" on Thursday', reply: 'On the way, 3 km out' },
-      { name: 'Aisha', note: 'Seen 2 hours ago', reply: 'Running 10 min late' },
-      { name: 'Ben', note: 'No reply since Monday', reply: "Can't make it, sorry" },
+      { name: 'Tom', note: 'Said maybe on Thursday', reply: 'In' },
+      { name: 'Aisha', note: "Hasn't answered", reply: 'In' },
+      { name: 'Ben', note: 'No reply since Monday', reply: "Out: can't make it, sorry" },
     ];
-    let poked = 0;
     quiet.forEach((q) => {
       const li = document.createElement('li');
-      li.innerHTML = `<span class="who">${q.name}<small>${q.note}</small></span><button type="button" class="poke">Poke</button>`;
-      const btn = li.querySelector('button');
-      btn.addEventListener('click', () => {
-        btn.disabled = true; btn.textContent = 'Poked';
-        setTimeout(() => {
-          li.classList.add('done'); li.querySelector('small').textContent = q.reply; btn.textContent = 'Answered';
-          poked++;
-          $('poke-result').textContent = poked === quiet.length ? 'Everyone has answered. Now you know who\u2019s really coming.' : `${quiet.length - poked} still to answer.`;
-        }, reduce ? 0 : 700);
-      });
+      li.innerHTML = `<span class="who">${q.name}<small>${q.note}</small></span>`;
       $('quiet').appendChild(li);
+    });
+    $('nudge-all').addEventListener('click', () => {
+      const btn = $('nudge-all');
+      btn.disabled = true; btn.textContent = 'Nudged';
+      [...$('quiet').children].forEach((li, i) => setTimeout(() => {
+        li.classList.add('done'); li.querySelector('small').textContent = quiet[i].reply;
+        if (i === quiet.length - 1) $('poke-result').textContent = 'Everyone has answered. Now you know who\u2019s really coming.';
+      }, reduce ? 0 : 600 * (i + 1)));
     });
     $('poke-result').textContent = '3 players haven\u2019t answered.';
 
@@ -608,44 +646,34 @@
       { label: 'Amit', sub: '42 off 30 balls', n: 3, star: true },
       { label: 'Ravi', sub: '3 wickets for 18', n: 3, star: true },
       { label: 'James', sub: 'Two great catches', n: 1, star: true },
-    ], (p) => `${p.label} takes the honours!`);
+    ], (p) => `${p.label} is player of the match!`);
 
-    const crew = [
-      { name: 'Amit', rounds: 1 }, { name: 'Ravi', rounds: 0 }, { name: 'James', rounds: 1 }, { name: 'Tom', rounds: 0 },
-    ];
-    let shout = null;
-    function drawRounds() {
-      $('rounds').innerHTML = crew.map((c) => `<li class="${c === shout ? 'up' : ''}"><span>${c.name}</span><span>${c.rounds} ${c.rounds === 1 ? 'round' : 'rounds'}</span></li>`).join('');
-      $('shout-now').textContent = shout ? `${shout.name}'s shout!` : 'Who\u2019s up first?';
-    }
-    $('next-round').addEventListener('click', () => {
-      const fewest = Math.min(...crew.map((c) => c.rounds));
-      shout = crew.find((c) => c.rounds === fewest);
-      shout.rounds++;
-      drawRounds();
-    });
-    drawRounds();
+    chalkVote('duck', 'duck-result', [
+      { label: 'Tom', sub: 'Out first ball', n: 3 },
+      { label: 'Ben', sub: 'Dropped a sitter', n: 2 },
+      { label: 'Josh', sub: 'Ran himself out', n: 2 },
+    ], (p) => `${p.label} gets the duck. Quack! 🦆`);
 
     // ---------- Sport switcher ----------
     const chalk = '#F5F7F2';
     const S = (w) => `stroke="${chalk}" stroke-width="${w}" fill="none"`;
     const sports = {
-      Cricket: { cls: '', eg: 'Need one more for Saturday’s T20? Post the spot and see who’s keen, with their PlayHQ stats if they play club cricket.',
+      Cricket: { cls: '', eg: 'Need one more for Saturday’s T20? Find a player at your level nearby, or a circle looking for one.',
         who: ['T20 and tennis-ball', 'Nets sessions', 'Club and social'],
         svg: `<svg viewBox="0 0 320 200"><ellipse cx="160" cy="100" rx="150" ry="92" ${S(3)} stroke-dasharray="6 5"/><ellipse cx="160" cy="100" rx="70" ry="50" ${S(1.5)} opacity=".6"/><rect x="150" y="62" width="20" height="76" fill="#D9C79C"/><path d="M147 70h26M147 130h26" stroke="${chalk}" stroke-width="2"/><g fill="${chalk}"><rect x="155" y="64" width="2" height="6"/><rect x="159" y="64" width="2" height="6"/><rect x="163" y="64" width="2" height="6"/><rect x="155" y="130" width="2" height="6"/><rect x="159" y="130" width="2" height="6"/><rect x="163" y="130" width="2" height="6"/></g><circle cx="205" cy="80" r="5" fill="#B3261E"/></svg>` },
-      Badminton: { cls: 'wood', eg: 'Find a doubles partner at your level for Tuesday night, and split the court hire in two taps.',
+      Badminton: { cls: 'wood', eg: 'Find a doubles partner at your level for Tuesday night, and see the court cost before you say in.',
         who: ['Singles and doubles', 'Social hits', 'Leagues'],
         svg: `<svg viewBox="0 0 320 200"><rect x="40" y="20" width="240" height="160" ${S(3)}/><path d="M40 34h240M40 166h240M160 20v160M112 20v160M208 20v160M60 20v160M260 20v160" ${S(2)}/><path d="M160 14v172" stroke="#14243A" stroke-width="4"/></svg>` },
-      Tennis: { cls: 'clay', eg: 'Looking for a hit after work? Find someone nearby who plays like you and book the court together.',
+      Tennis: { cls: 'clay', eg: 'Looking for a hit after work? Find someone nearby who plays like you.',
         who: ['Hard and clay courts', 'Singles and doubles', 'Hit and giggle'],
         svg: `<svg viewBox="0 0 320 200"><rect x="30" y="20" width="260" height="160" ${S(3)}/><path d="M30 40h260M30 160h260M95 40v120M225 40v120M95 100h130" ${S(2)}/><path d="M160 12v176" stroke="#14243A" stroke-width="4"/><circle cx="118" cy="70" r="6" fill="#D7E53B"/></svg>` },
       Football: { cls: '', eg: 'Five-a-side short a keeper? Fill the gap tonight and see who’s actually on the way.',
         who: ['Five-a-side', 'Futsal', 'Weekend kickabouts'],
         svg: `<svg viewBox="0 0 320 200"><rect x="20" y="15" width="280" height="170" ${S(3)}/><path d="M160 15v170" ${S(2)}/><circle cx="160" cy="100" r="28" ${S(2)}/><rect x="20" y="60" width="40" height="80" ${S(2)}/><rect x="260" y="60" width="40" height="80" ${S(2)}/><circle cx="160" cy="100" r="3" fill="${chalk}"/></svg>` },
-      Golf: { cls: '', eg: 'Make up a four for Sunday morning and share the green fees, without the endless group chat.',
+      Golf: { cls: '', eg: 'Make up a four for Sunday morning, add the tee time, and skip the endless group chat.',
         who: ['Nine and eighteen holes', 'Driving range', 'Social fours'],
         svg: `<svg viewBox="0 0 320 200"><path d="M30 170 C90 150 110 120 150 110 S230 70 270 50" stroke="#5FA373" stroke-width="44" fill="none" stroke-linecap="round"/><ellipse cx="268" cy="50" rx="34" ry="24" fill="#6DB883"/><ellipse cx="120" cy="140" rx="18" ry="9" fill="#E8D9A8"/><path d="M272 50V18" stroke="${chalk}" stroke-width="2.5"/><path d="M272 18l18 7-18 7z" fill="#B3261E"/><circle cx="272" cy="50" r="3" fill="#14243A"/><circle cx="48" cy="166" r="4" fill="${chalk}"/></svg>` },
-      Bowling: { cls: 'lanes', eg: 'Get the crew together for Friday bowling, see who’s coming, and split the lane booking.',
+      Bowling: { cls: 'lanes', eg: 'Get the crew together for Friday bowling, see who’s coming, and add the lane booking.',
         who: ['Ten-pin', 'Lawn bowls', 'Leagues'],
         svg: `<svg viewBox="0 0 320 200"><g fill="#E3C38F"><rect x="40" y="10" width="70" height="180"/><rect x="125" y="10" width="70" height="180"/><rect x="210" y="10" width="70" height="180"/></g><g stroke="#8C6534" stroke-width="2"><path d="M40 10v180M110 10v180M125 10v180M195 10v180M210 10v180M280 10v180"/></g><g fill="${chalk}" stroke="#14243A" stroke-width="1"><circle cx="160" cy="30" r="5"/><circle cx="153" cy="40" r="5"/><circle cx="167" cy="40" r="5"/><circle cx="146" cy="50" r="5"/><circle cx="160" cy="50" r="5"/><circle cx="174" cy="50" r="5"/></g><circle cx="160" cy="160" r="12" fill="#14243A"/></svg>` },
     };
