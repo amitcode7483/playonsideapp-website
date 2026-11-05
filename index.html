@@ -101,7 +101,8 @@
 
     /* Scoreboard ticker */
     .ticker { background: var(--navy); color: var(--chalk); overflow: hidden; border-bottom: 3px solid var(--navy); }
-    .ticker .track { display: flex; width: max-content; animation: tick 38s linear infinite; }
+    .ticker .track { display: flex; width: max-content; animation: tick 38s linear infinite; will-change: transform; }
+    .ticker.paused .track { animation-play-state: paused; }
     .ticker:hover .track { animation-play-state: paused; }
     .ticker ul { list-style: none; display: flex; margin: 0; padding: 14px 0; }
     .ticker li { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; padding: 0 28px; white-space: nowrap; display: flex; align-items: center; gap: 10px; }
@@ -110,7 +111,7 @@
 
     /* Real app screens */
     .phones { --edge: max(var(--gutter), calc((100vw - 1200px) / 2 + var(--gutter))); display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--edge); padding: 8px var(--edge) 26px; scrollbar-width: thin; }
-    .phones figure { margin: 0; flex: 0 0 auto; width: 250px; scroll-snap-align: start; }
+    .phones figure { margin: 0; flex: 0 0 auto; width: 250px; scroll-snap-align: start; contain: layout paint; }
     .phones img { display: block; width: 250px; height: auto; border-radius: 30px; border: 6px solid var(--navy); box-shadow: 8px 8px 0 var(--navy); background: var(--navy); }
     .phones figcaption { margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.45; }
     .phones figcaption b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); }
@@ -375,17 +376,17 @@
         </div>
       </div>
       <div class="phones" tabindex="0" aria-label="App screens, scroll sideways">
-        <figure><img src="/media/app/home.jpg" width="390" height="844" loading="lazy" alt="Home: next up, a T20 today, 11 of 11 in, with check-in buttons" /><figcaption><b>Next up</b> Who's in, the weather, and check-in when it's close.</figcaption></figure>
-        <figure><img src="/media/app/game.jpg" width="390" height="844" loading="lazy" alt="The game page: date, ground booked, directions, forecast and who's really coming" /><figcaption><b>Game day</b> Directions, forecast, and who's really coming.</figcaption></figure>
-        <figure><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /><figcaption><b>On my way</b> See who's close, and buzz the ones who aren't.</figcaption></figure>
-        <figure><img src="/media/app/team-field.jpg" width="390" height="844" loading="lazy" alt="The team sheet: batting order and a cricket field with each fielder's spot" /><figcaption><b>The team</b> Batting order and the field, from the captain.</figcaption></figure>
-        <figure><img src="/media/app/after.jpg" width="390" height="844" loading="lazy" alt="After the game: who's keen and votes for the pub" /><figcaption><b>After the game</b> Who's keen, and where to.</figcaption></figure>
-        <figure><img src="/media/app/chat.jpg" width="390" height="844" loading="lazy" alt="The circle chat with the team sheet and after-game cards" /><figcaption><b>Your circle</b> Chat, polls, games and the team, together.</figcaption></figure>
-        <figure><img src="/media/app/games.jpg" width="390" height="844" loading="lazy" alt="Your games: waiting on you, today, and the week ahead" /><figcaption><b>Your games</b> Everything coming up, across every circle.</figcaption></figure>
-        <figure><img src="/media/app/stats.jpg" width="390" height="844" loading="lazy" alt="Your stats and badges" /><figcaption><b>Your record</b> Games, turning up, and badges.</figcaption></figure>
-        <figure><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" alt="Who's available: a grid of players and weekends, with a cross for each day someone is away" /><figcaption><b>Who's available</b> The season's away dates, without the spreadsheet.</figcaption></figure>
-        <figure><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="Match fees: the captain ticks who has paid, 2 of 4 paid" /><figcaption><b>Who's paid</b> Tick off match fees. The money stays between you.</figcaption></figure>
-        <figure><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip, with a tip to fix it" /><figcaption><b>Shot guides</b> Pick a shot and your timing. See what went wrong.</figcaption></figure>
+        <figure><img src="/media/app/home.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Home: next up, a T20 today, 11 of 11 in, with check-in buttons" /><figcaption><b>Next up</b> Who's in, the weather, and check-in when it's close.</figcaption></figure>
+        <figure><img src="/media/app/game.jpg" width="390" height="844" loading="lazy" decoding="async" alt="The game page: date, ground booked, directions, forecast and who's really coming" /><figcaption><b>Game day</b> Directions, forecast, and who's really coming.</figcaption></figure>
+        <figure><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" decoding="async" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /><figcaption><b>On my way</b> See who's close, and buzz the ones who aren't.</figcaption></figure>
+        <figure><img src="/media/app/team-field.jpg" width="390" height="844" loading="lazy" decoding="async" alt="The team sheet: batting order and a cricket field with each fielder's spot" /><figcaption><b>The team</b> Batting order and the field, from the captain.</figcaption></figure>
+        <figure><img src="/media/app/after.jpg" width="390" height="844" loading="lazy" decoding="async" alt="After the game: who's keen and votes for the pub" /><figcaption><b>After the game</b> Who's keen, and where to.</figcaption></figure>
+        <figure><img src="/media/app/chat.jpg" width="390" height="844" loading="lazy" decoding="async" alt="The circle chat with the team sheet and after-game cards" /><figcaption><b>Your circle</b> Chat, polls, games and the team, together.</figcaption></figure>
+        <figure><img src="/media/app/games.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Your games: waiting on you, today, and the week ahead" /><figcaption><b>Your games</b> Everything coming up, across every circle.</figcaption></figure>
+        <figure><img src="/media/app/stats.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Your stats and badges" /><figcaption><b>Your record</b> Games, turning up, and badges.</figcaption></figure>
+        <figure><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Who's available: a grid of players and weekends, with a cross for each day someone is away" /><figcaption><b>Who's available</b> The season's away dates, without the spreadsheet.</figcaption></figure>
+        <figure><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Match fees: the captain ticks who has paid, 2 of 4 paid" /><figcaption><b>Who's paid</b> Tick off match fees. The money stays between you.</figcaption></figure>
+        <figure><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip, with a tip to fix it" /><figcaption><b>Shot guides</b> Pick a shot and your timing. See what went wrong.</figcaption></figure>
       </div>
     </section>
 
@@ -404,22 +405,22 @@
               <div class="buzzes" aria-hidden="true"><span>Raj · ~7 min</span><span>Tom · 10 min late</span><span class="b">🔔 Buzz</span></div>
               <span class="tag">Sharing only when you tap "I'm on my way", and only with players in that game</span>
             </div>
-            <div class="shot"><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /></div>
+            <div class="shot"><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" decoding="async" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /></div>
           </li>
           <li class="nf">
-            <div class="shot" style="--y:.2"><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" alt="Who's available: players and weekends, with a cross for each day someone is away" /></div>
+            <div class="shot" style="--y:.2"><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Who's available: players and weekends, with a cross for each day someone is away" /></div>
             <div class="txt"><h3>✈️ Away dates</h3><p>Mark the weekends you can't play, once. The captain sees who's away while planning, and you won't get nudged for those days.</p></div>
           </li>
           <li class="nf">
-            <div class="shot" style="--y:.615"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="Match fees: the captain ticks who has paid" /></div>
+            <div class="shot" style="--y:.615"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Match fees: the captain ticks who has paid" /></div>
             <div class="txt"><h3>💵 Who's paid</h3><p>Tick off match fees game by game. Play Onside never handles money: post how to pay in the chat.</p></div>
           </li>
           <li class="nf">
-            <div class="shot" style="--y:.05"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="A game page with the forecast and an Add to calendar button" /></div>
+            <div class="shot" style="--y:.05"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" decoding="async" alt="A game page with the forecast and an Add to calendar button" /></div>
             <div class="txt"><h3>📅 Add to calendar</h3><p>One tap puts the game in your phone's calendar, ground and all.</p></div>
           </li>
           <li class="nf">
-            <div class="shot" style="--y:.33"><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip" /></div>
+            <div class="shot" style="--y:.33"><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip" /></div>
             <div class="txt"><h3>🏏 Shot guides</h3><p>Pick a shot and your timing. See where the ball goes, and how to fix it. Cricket and tennis to start.</p></div>
           </li>
         </ul>
@@ -519,11 +520,11 @@
         </div>
         <div class="flyer-row">
           <figure class="flyer f1">
-            <a href="/media/flyers/Play-Onside-Flyer-2-page.pdf" aria-label="Download the 2-page handout (PDF)"><img src="/media/flyers/flyer-p1.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer front page: Know who's really coming" /></a>
+            <a href="/media/flyers/Play-Onside-Flyer-2-page.pdf" aria-label="Download the 2-page handout (PDF)"><img src="/media/flyers/flyer-p1.jpg" width="794" height="1123" loading="lazy" decoding="async" alt="Play Onside flyer front page: Know who's really coming" /></a>
             <figcaption><b>2-page handout</b><span>Front and back · 0.8 MB</span><a class="dl" href="/media/flyers/Play-Onside-Flyer-2-page.pdf" download>Download PDF</a></figcaption>
           </figure>
           <figure class="flyer f2">
-            <a href="/media/flyers/Play-Onside-Flyer-4-page.pdf" aria-label="Download the 4-page flyer (PDF)"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" alt="Play Onside flyer: from who's in to the first ball" /></a>
+            <a href="/media/flyers/Play-Onside-Flyer-4-page.pdf" aria-label="Download the 4-page flyer (PDF)"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" decoding="async" alt="Play Onside flyer: from who's in to the first ball" /></a>
             <figcaption><b>4-page flyer</b><span>Plus pages for captains and players · 1.4 MB</span><a class="dl" href="/media/flyers/Play-Onside-Flyer-4-page.pdf" download>Download PDF</a></figcaption>
           </figure>
         </div>
@@ -555,6 +556,9 @@
   <script>
   (() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Pause the ticker while it's off screen, so scrolling stays smooth.
+    const tick = document.querySelector('.ticker');
+    if (tick && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => tick.classList.toggle('paused', !e.isIntersecting)).observe(tick);
     const $ = (id) => document.getElementById(id);
     const GROUND = { x: 152, y: 133 };
     const COLORS = { here: '#2E7D4F', way: '#2E7D4F', late: '#E2A11B', out: '#B3261E', quiet: '#8A94A6' };
