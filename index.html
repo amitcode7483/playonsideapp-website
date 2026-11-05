@@ -142,11 +142,28 @@
 
     /* Try-it boards */
     .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .newgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 18px; }
-    @media (min-width: 620px) { .newgrid { grid-template-columns: 1fr 1fr; } .newgrid li:first-child { grid-column: span 2; } }
-    @media (min-width: 980px) { .newgrid { grid-template-columns: repeat(3, 1fr); } }
-    .newgrid li { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 6px 6px 0 var(--navy); padding: 18px 20px; font-size: 16px; line-height: 1.45; color: var(--muted); min-width: 0; }
-    .newgrid li b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; color: var(--navy); margin-bottom: 6px; }
+    section.new { background: var(--turf-soft); border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy); }
+    .new-eyebrow { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--turf-dark); background: var(--paper); border: 2px solid var(--navy); border-radius: 999px; padding: 4px 12px; margin-bottom: 14px; }
+    .newgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .nf { background: var(--paper); border: 3px solid var(--navy); border-radius: 20px; box-shadow: 7px 7px 0 var(--navy); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+    .nf .shot { height: 168px; overflow: hidden; border-bottom: 3px solid var(--navy); background: var(--chalk); }
+    .nf .shot img { display: block; width: 100%; height: auto; margin-top: calc(var(--y) * -216.4%); }
+    .nf .txt { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .nf h3 { font-size: 30px; line-height: 1; }
+    .nf p { margin: 0; font-size: 16px; line-height: 1.45; color: var(--muted); }
+    .nf .tag { align-self: flex-start; margin-top: auto; padding-top: 8px; font-size: 13px; font-weight: 700; color: var(--turf-dark); }
+    .nf.big { background: var(--navy); color: var(--chalk); display: grid; grid-template-columns: 1fr; }
+    .nf.big .txt { padding: 26px 26px 10px; gap: 12px; }
+    .nf.big h3 { font-size: clamp(38px, 4.4vw, 56px); color: var(--chalk); }
+    .nf.big p { color: #C9D2DF; font-size: 18px; }
+    .nf.big .tag { color: #FFD166; }
+    .nf.big .shot { height: 300px; border: 0; background: transparent; padding: 0 26px; display: flex; align-items: flex-start; justify-content: center; }
+    .nf.big .shot img { width: min(100%, 340px); border-radius: 22px 22px 0 0; border: 6px solid #0B1626; border-bottom: 0; margin-top: 0; }
+    .buzzes { display: flex; flex-wrap: wrap; gap: 8px; }
+    .buzzes span { font-size: 14px; font-weight: 700; border-radius: 999px; padding: 4px 12px; background: rgba(255,255,255,.1); color: var(--chalk); }
+    .buzzes span.b { background: #FFD166; color: var(--navy); }
+    @media (min-width: 640px) { .newgrid { grid-template-columns: 1fr 1fr; } .nf.big { grid-column: 1 / -1; grid-template-columns: 1.1fr 1fr; } .nf.big .shot { height: auto; min-height: 320px; padding-top: 26px; align-self: stretch; } .nf.big .shot img { height: 100%; object-fit: cover; object-position: top; } }
+    @media (min-width: 1000px) { .newgrid { grid-template-columns: 1.15fr 1.15fr 1fr 1fr; } .nf.big { grid-column: 1 / 3; grid-row: 1 / 3; grid-template-columns: 1fr; grid-template-rows: auto 1fr; } .nf.big .shot { min-height: 0; height: 100%; padding-top: 0; position: relative; } .nf.big .shot img { position: absolute; top: 0; left: 50%; transform: translateX(-50%); height: 100%; width: auto; max-width: calc(100% - 52px); object-fit: cover; object-position: top; } }
     .board { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
     .board .when { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; color: var(--turf); }
     .board h3 { font-size: 36px; }
@@ -375,15 +392,36 @@
     <section class="new" aria-labelledby="new-h">
       <div class="wrap">
         <div class="head">
+          <span class="new-eyebrow">Just landed</span>
           <h2 id="new-h">New this season</h2>
           <p>Built from how real clubs run today: WhatsApp groups, a season spreadsheet and a lot of chasing. New features arrive on Android first, with iPhone soon after.</p>
         </div>
         <ul class="newgrid">
-          <li><b>🔔 On my way + Buzz</b> Players who choose to share show up on a live map on game day. The captain can buzz anyone who isn't here yet.</li>
-          <li><b>✈️ Away dates</b> Mark the weekends you can't play, once. The captain sees who's away while planning, and you won't get nudged for those days.</li>
-          <li><b>💵 Who's paid</b> Tick off match fees game by game. Play Onside never handles money: post how to pay in the chat.</li>
-          <li><b>📅 Add to calendar</b> One tap puts the game in your phone's calendar, ground and all.</li>
-          <li><b>🏏 Shot guides</b> Cover drive, pull, sweep, serve, drop shot: pick your timing, see where the ball goes and how to fix it. Cricket and tennis to start.</li>
+          <li class="nf big">
+            <div class="txt">
+              <h3>"5 mins away bro."<br>Sure.</h3>
+              <p><b style="color:#F5F7F2">On my way + Buzz.</b> Players who choose to share show up on a live map on game day, with how far away they are. The captain can buzz anyone who isn't here yet.</p>
+              <div class="buzzes" aria-hidden="true"><span>Raj · ~7 min</span><span>Tom · 10 min late</span><span class="b">🔔 Buzz</span></div>
+              <span class="tag">Sharing only when you tap "I'm on my way", and only with players in that game</span>
+            </div>
+            <div class="shot"><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /></div>
+          </li>
+          <li class="nf">
+            <div class="shot" style="--y:.2"><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" alt="Who's available: players and weekends, with a cross for each day someone is away" /></div>
+            <div class="txt"><h3>✈️ Away dates</h3><p>Mark the weekends you can't play, once. The captain sees who's away while planning, and you won't get nudged for those days.</p></div>
+          </li>
+          <li class="nf">
+            <div class="shot" style="--y:.615"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="Match fees: the captain ticks who has paid" /></div>
+            <div class="txt"><h3>💵 Who's paid</h3><p>Tick off match fees game by game. Play Onside never handles money: post how to pay in the chat.</p></div>
+          </li>
+          <li class="nf">
+            <div class="shot" style="--y:.05"><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="A game page with the forecast and an Add to calendar button" /></div>
+            <div class="txt"><h3>📅 Add to calendar</h3><p>One tap puts the game in your phone's calendar, ground and all.</p></div>
+          </li>
+          <li class="nf">
+            <div class="shot" style="--y:.33"><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip" /></div>
+            <div class="txt"><h3>🏏 Shot guides</h3><p>Pick a shot and your timing. See where the ball goes, and how to fix it. Cricket and tennis to start.</p></div>
+          </li>
         </ul>
       </div>
     </section>
