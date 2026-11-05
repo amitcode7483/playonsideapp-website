@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Play Onside: know who's really coming</title>
-  <meta name="description" content="Play Onside helps you find people to play with, plan games with your circle, and see who's really coming before the first ball. Cricket first, launching in Sydney." />
+  <meta name="description" content="Play Onside helps you find people to play with, plan games with your circle, and see who's really coming before the first ball: away dates, match fees, live On my way and shot guides. Cricket first, launching in Sydney." />
   <meta property="og:title" content="Play Onside" />
   <meta property="og:description" content="Find people to play with, plan the game, and know who's really coming." />
   <meta name="theme-color" content="#2E7D4F" />
@@ -142,6 +142,9 @@
 
     /* Try-it boards */
     .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .newgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+    .newgrid li { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 6px 6px 0 var(--navy); padding: 18px 20px; font-size: 16px; line-height: 1.45; color: var(--muted); min-width: 0; }
+    .newgrid li b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; color: var(--navy); margin-bottom: 6px; }
     .board { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
     .board .when { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; color: var(--turf); }
     .board h3 { font-size: 36px; }
@@ -324,6 +327,9 @@
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
         <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
+        <li style="--c:#E2A11B">Raj got buzzed 🔔</li>
+        <li style="--c:#6DB883">9 of 11 match fees paid</li>
+        <li style="--c:#E2A11B">Dev is away Saturday</li>
       </ul>
       <ul>
         <li style="--c:#6DB883">Amit is at the ground</li>
@@ -334,6 +340,9 @@
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
         <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
+        <li style="--c:#E2A11B">Raj got buzzed 🔔</li>
+        <li style="--c:#6DB883">9 of 11 match fees paid</li>
+        <li style="--c:#E2A11B">Dev is away Saturday</li>
       </ul>
     </div>
   </div>
@@ -349,11 +358,31 @@
       <div class="phones" tabindex="0" aria-label="App screens, scroll sideways">
         <figure><img src="/media/app/home.jpg" width="390" height="844" loading="lazy" alt="Home: next up, a T20 today, 11 of 11 in, with check-in buttons" /><figcaption><b>Next up</b> Who's in, the weather, and check-in when it's close.</figcaption></figure>
         <figure><img src="/media/app/game.jpg" width="390" height="844" loading="lazy" alt="The game page: date, ground booked, directions, forecast and who's really coming" /><figcaption><b>Game day</b> Directions, forecast, and who's really coming.</figcaption></figure>
+        <figure><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" alt="On my way: who's here, who's on the way and how far, with a Buzz button for each late player" /><figcaption><b>On my way</b> See who's close, and buzz the ones who aren't.</figcaption></figure>
         <figure><img src="/media/app/team-field.jpg" width="390" height="844" loading="lazy" alt="The team sheet: batting order and a cricket field with each fielder's spot" /><figcaption><b>The team</b> Batting order and the field, from the captain.</figcaption></figure>
         <figure><img src="/media/app/after.jpg" width="390" height="844" loading="lazy" alt="After the game: who's keen and votes for the pub" /><figcaption><b>After the game</b> Who's keen, and where to.</figcaption></figure>
         <figure><img src="/media/app/chat.jpg" width="390" height="844" loading="lazy" alt="The circle chat with the team sheet and after-game cards" /><figcaption><b>Your circle</b> Chat, polls, games and the team, together.</figcaption></figure>
         <figure><img src="/media/app/games.jpg" width="390" height="844" loading="lazy" alt="Your games: waiting on you, today, and the week ahead" /><figcaption><b>Your games</b> Everything coming up, across every circle.</figcaption></figure>
         <figure><img src="/media/app/stats.jpg" width="390" height="844" loading="lazy" alt="Your stats and badges" /><figcaption><b>Your record</b> Games, turning up, and badges.</figcaption></figure>
+        <figure><img src="/media/app/available.jpg" width="390" height="844" loading="lazy" alt="Who's available: a grid of players and weekends, with a cross for each day someone is away" /><figcaption><b>Who's available</b> The season's away dates, without the spreadsheet.</figcaption></figure>
+        <figure><img src="/media/app/fees.jpg" width="390" height="844" loading="lazy" alt="Match fees: the captain ticks who has paid, 2 of 4 paid" /><figcaption><b>Who's paid</b> Tick off match fees. The money stays between you.</figcaption></figure>
+        <figure><img src="/media/app/shot-guides.jpg" width="390" height="844" loading="lazy" alt="Shot guides: a cover drive played too late, edged and caught at 2nd slip, with a tip to fix it" /><figcaption><b>Shot guides</b> Pick a shot and your timing. See what went wrong.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="new" aria-labelledby="new-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="new-h">New this season</h2>
+          <p>Built from how real clubs run today: WhatsApp groups, a season spreadsheet and a lot of chasing. New features arrive on Android first, with iPhone soon after.</p>
+        </div>
+        <ul class="newgrid">
+          <li><b>🔔 On my way + Buzz</b> Players who choose to share show up on a live map on game day. The captain can buzz anyone who isn't here yet.</li>
+          <li><b>✈️ Away dates</b> Mark the weekends you can't play, once. The captain sees who's away while planning, and you won't get nudged for those days.</li>
+          <li><b>💵 Who's paid</b> Tick off match fees game by game. Play Onside never handles money: post how to pay in the chat.</li>
+          <li><b>📅 Add to calendar</b> One tap puts the game in your phone's calendar, ground and all.</li>
+          <li><b>🏏 Shot guides</b> Cover drive, pull, sweep, serve, drop shot: pick your timing, see where the ball goes and how to fix it. Cricket and tennis to start.</li>
+        </ul>
       </div>
     </section>
 
