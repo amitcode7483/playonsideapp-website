@@ -142,7 +142,9 @@
 
     /* Try-it boards */
     .boards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .newgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+    .newgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 620px) { .newgrid { grid-template-columns: 1fr 1fr; } .newgrid li:first-child { grid-column: span 2; } }
+    @media (min-width: 980px) { .newgrid { grid-template-columns: repeat(3, 1fr); } }
     .newgrid li { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 6px 6px 0 var(--navy); padding: 18px 20px; font-size: 16px; line-height: 1.45; color: var(--muted); min-width: 0; }
     .newgrid li b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; color: var(--navy); margin-bottom: 6px; }
     .board { background: var(--paper); border: 3px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
