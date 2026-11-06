@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Play Onside: know who's really coming</title>
-  <meta name="description" content="Play Onside helps you find people to play with, plan games with your circle, and see who's really coming: cricket, badminton, tennis, football, golf and bowling. Away dates, match fees, live On my way and shot guides. Cricket first, launching in Sydney." />
+  <meta name="description" content="Free on iPhone and Android. Play Onside helps you find people to play with, plan games with your circle, and see who's really coming: cricket, badminton, tennis, football, golf and bowling. Away dates, match fees, live On my way and shot guides. Cricket first, launching in Sydney." />
   <meta property="og:title" content="Play Onside" />
   <meta property="og:description" content="Find people to play with, plan the game, and know who's really coming." />
   <meta name="theme-color" content="#2E7D4F" />
@@ -56,6 +56,11 @@
     .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; padding: 20px var(--gutter) 64px; position: relative; z-index: 1; }
     .hero h1 { font-size: clamp(64px, 10.5vw, 148px); text-transform: none; }
     .hero .lead { font-size: 21px; margin-top: 26px; max-width: 28em; color: #E8F1EA; }
+    .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+    .store { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 18px 6px 14px; border-radius: 12px; background: #000; color: #fff; text-decoration: none; border: 1.5px solid rgba(255,255,255,.35); font-family: 'Barlow', system-ui, sans-serif; font-weight: 700; font-size: 19px; line-height: 1.05; }
+    .store small { display: block; font-size: 11.5px; font-weight: 500; opacity: .85; }
+    .store:hover { background: #1a1a1a; }
+    .stores.dark .store { border-color: #000; }
     .hero .soon { margin-top: 30px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-weight: 600; }
     .pill { display: inline-flex; align-items: center; gap: 9px; background: var(--chalk); color: var(--navy); border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700; }
     .pill .seam { width: 12px; height: 12px; border-radius: 50%; background: var(--ball); }
@@ -307,9 +312,13 @@
           <li><a href="#sports-h" data-sport="Cricket">🏏 Cricket</a></li><li><a href="#sports-h" data-sport="Badminton">🏸 Badminton</a></li><li><a href="#sports-h" data-sport="Tennis">🎾 Tennis</a></li>
           <li><a href="#sports-h" data-sport="Football">⚽ Football</a></li><li><a href="#sports-h" data-sport="Golf">⛳ Golf</a></li><li><a href="#sports-h" data-sport="Bowling">🎳 Bowling</a></li>
         </ul>
+        <div class="stores">
+          <a class="store" href="https://apps.apple.com/au/app/play-onside/id6830015365" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.5 2-3.7 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9C6.1 7 4.5 8 3.7 9.5 1.9 12.6 3.2 17.2 5 19.7c.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.4zM14 5.1c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span><small>Download on the</small>App Store</span></a>
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.playonsideapp.app" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 2.6 14.2 12 4 21.4c-.4-.2-.7-.7-.7-1.2V3.8c0-.5.3-1 .7-1.2zm11.4 10.6 2.6 2.4-11.6 6.6 9-9zm0-2.4-9-9 11.6 6.6-2.6 2.4zm1.2 1.2 3-2.8 2.2 1.3c.9.5.9 1.6 0 2.1l-2.2 1.3-3-1.9z"/></svg><span><small>Get it on</small>Google Play</span></a>
+        </div>
         <div class="soon">
-          <span class="pill"><span class="seam" aria-hidden="true"></span>Coming soon</span>
-          <span class="where">Six sports, starting in Sydney</span>
+          <span class="pill"><span class="seam" aria-hidden="true"></span>Out now</span>
+          <span class="where">Free on iPhone and Android · Six sports, starting in Sydney</span>
         </div>
       </div>
 
@@ -553,10 +562,14 @@
     <section aria-labelledby="launch-h">
       <div class="wrap launch">
         <div class="head" style="margin-bottom:0">
-          <h2 id="launch-h">Starting in Sydney, then everywhere you play</h2>
-          <p>We're launching in Sydney with six sports, then opening up across Australia, New Zealand, Asia and the US. For players aged 18 and over.</p>
+          <h2 id="launch-h">Out now in Australia</h2>
+          <p>Free on iPhone and Android, with six sports. Starting in Sydney, then opening up to New Zealand, Asia and the US. For players aged 18 and over.</p>
         </div>
         <div class="actions">
+          <div class="stores dark">
+            <a class="store" href="https://apps.apple.com/au/app/play-onside/id6830015365" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.5 2-3.7 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9C6.1 7 4.5 8 3.7 9.5 1.9 12.6 3.2 17.2 5 19.7c.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.4zM14 5.1c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span><small>Download on the</small>App Store</span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.playonsideapp.app" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 2.6 14.2 12 4 21.4c-.4-.2-.7-.7-.7-1.2V3.8c0-.5.3-1 .7-1.2zm11.4 10.6 2.6 2.4-11.6 6.6 9-9zm0-2.4-9-9 11.6 6.6-2.6 2.4zm1.2 1.2 3-2.8 2.2 1.3c.9.5.9 1.6 0 2.1l-2.2 1.3-3-1.9z"/></svg><span><small>Get it on</small>Google Play</span></a>
+          </div>
           <a class="btn primary" href="https://www.instagram.com/playonsideapp/">Follow on Instagram</a>
           <a class="btn plain" href="mailto:playonsideapp@gmail.com">Email us</a>
         </div>
