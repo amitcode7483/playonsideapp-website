@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Play Onside: know who's really coming</title>
-  <meta name="description" content="Play Onside helps you find people to play with, plan games with your circle, and see who's really coming before the first ball: away dates, match fees, live On my way and shot guides. Cricket first, launching in Sydney." />
+  <meta name="description" content="Play Onside helps you find people to play with, plan games with your circle, and see who's really coming: cricket, badminton, tennis, football, golf and bowling. Away dates, match fees, live On my way and shot guides. Cricket first, launching in Sydney." />
   <meta property="og:title" content="Play Onside" />
   <meta property="og:description" content="Find people to play with, plan the game, and know who's really coming." />
   <meta name="theme-color" content="#2E7D4F" />
@@ -60,6 +60,9 @@
     .pill { display: inline-flex; align-items: center; gap: 9px; background: var(--chalk); color: var(--navy); border-radius: 999px; padding: 10px 18px; font-size: 16px; font-weight: 700; }
     .pill .seam { width: 12px; height: 12px; border-radius: 50%; background: var(--ball); }
     .hero .soon .where { color: #E8F1EA; font-weight: 500; }
+    .hero-sports { list-style: none; margin: 20px 0 22px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-sports a { display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; border: 2px solid rgba(245,247,242,.55); color: var(--chalk); text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap; }
+    .hero-sports a:hover { background: rgba(245,247,242,.12); }
 
     /* ---------- Game-day card ---------- */
     .gameday { background: var(--paper); color: var(--navy); border: 3px solid var(--navy); border-radius: 20px; box-shadow: 12px 12px 0 var(--navy); overflow: hidden; }
@@ -299,10 +302,14 @@
     <div class="wrap hero">
       <div>
         <h1>Know who's really coming.</h1>
-        <p class="lead">Find people to play with, plan the game with your circle, and see who's on the way before the first ball. No more "yeah, I'm in" from someone who never turns up.</p>
+        <p class="lead">Find people to play with, plan the game with your circle, and see who's on the way before it starts. No more "yeah, I'm in" from someone who never turns up.</p>
+        <ul class="hero-sports" aria-label="Sports in Play Onside">
+          <li><a href="#sports-h" data-sport="Cricket">🏏 Cricket</a></li><li><a href="#sports-h" data-sport="Badminton">🏸 Badminton</a></li><li><a href="#sports-h" data-sport="Tennis">🎾 Tennis</a></li>
+          <li><a href="#sports-h" data-sport="Football">⚽ Football</a></li><li><a href="#sports-h" data-sport="Golf">⛳ Golf</a></li><li><a href="#sports-h" data-sport="Bowling">🎳 Bowling</a></li>
+        </ul>
         <div class="soon">
           <span class="pill"><span class="seam" aria-hidden="true"></span>Coming soon</span>
-          <span class="where">Cricket first, starting in Sydney</span>
+          <span class="where">Six sports, starting in Sydney</span>
         </div>
       </div>
 
@@ -348,6 +355,10 @@
         <li style="--c:#E2A11B">Tom got a nudge</li>
         <li style="--c:#6DB883">Tom is on the way</li>
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
+        <li style="--c:#6DB883">Tennis doubles: 4 of 4 in</li>
+        <li style="--c:#E2A11B">Thursday 5-a-side needs 2 more</li>
+        <li style="--c:#6DB883">Golf, 7:10 am tee time: 3 of 4 in</li>
+        <li style="--c:#6DB883">Ten-pin lane booked: $12 each</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
         <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
         <li style="--c:#E2A11B">Raj got buzzed 🔔</li>
@@ -361,6 +372,10 @@
         <li style="--c:#E2A11B">Tom got a nudge</li>
         <li style="--c:#6DB883">Tom is on the way</li>
         <li style="--c:#6DB883">Saturday T20 needs 1 more</li>
+        <li style="--c:#6DB883">Tennis doubles: 4 of 4 in</li>
+        <li style="--c:#E2A11B">Thursday 5-a-side needs 2 more</li>
+        <li style="--c:#6DB883">Golf, 7:10 am tee time: 3 of 4 in</li>
+        <li style="--c:#6DB883">Ten-pin lane booked: $12 each</li>
         <li style="--c:#E2A11B">Doubles partner wanted, Tuesday 7 pm</li>
         <li style="--c:#6DB883">4 of 5 coming to Sunday nets</li>
         <li style="--c:#E2A11B">Raj got buzzed 🔔</li>
@@ -371,11 +386,29 @@
   </div>
 
   <main>
+    <section class="sports" aria-labelledby="sports-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="sports-h">Six sports to start</h2>
+          <p>Pick one to see how it works.</p>
+        </div>
+        <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
+        <div class="stage">
+          <div class="pitch" id="pitch" aria-hidden="true"></div>
+          <div>
+            <h3 id="sport-title"></h3>
+            <p class="eg" id="sport-eg"></p>
+            <div class="who" id="sport-who"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="screens" aria-labelledby="screens-h">
       <div class="wrap">
         <div class="head">
           <h2 id="screens-h">See the real app</h2>
-          <p>Real screens from Play Onside: the Sunday Strikers' T20, 26 minutes before the first ball.</p>
+          <p>Real screens from Play Onside, here on game day for a cricket circle. Every sport works the same way.</p>
         </div>
       </div>
       <div class="phones" tabindex="0" aria-label="App screens, scroll sideways">
@@ -434,7 +467,7 @@
       <div class="wrap">
         <div class="head">
           <h2 id="boards-h">Group chats say yes. Play Onside shows up.</h2>
-          <p>Everything between "who's in?" and the first ball, in one place. Have a go.</p>
+          <p>Everything between "who's in?" and the start of the game, in one place. Have a go.</p>
         </div>
         <div class="boards">
           <article class="board" aria-labelledby="vote-h">
@@ -492,23 +525,6 @@
       </div>
     </section>
 
-    <section class="sports" aria-labelledby="sports-h">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="sports-h">Six sports to start</h2>
-          <p>Pick one to see how it works.</p>
-        </div>
-        <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
-        <div class="stage">
-          <div class="pitch" id="pitch" aria-hidden="true"></div>
-          <div>
-            <h3 id="sport-title"></h3>
-            <p class="eg" id="sport-eg"></p>
-            <div class="who" id="sport-who"></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="flyers" aria-labelledby="flyers-h">
       <div class="wrap flyer-band">
@@ -785,6 +801,8 @@
       sw.appendChild(b);
     });
     pick('Cricket');
+    // The sport chips at the top open that sport here.
+    document.querySelectorAll('.hero-sports a[data-sport]').forEach((a) => a.addEventListener('click', () => pick(a.dataset.sport)));
   })();
   </script>
 </body>
