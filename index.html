@@ -449,6 +449,24 @@
     .ticker ul { padding: 10px 0; }
     .ticker li { font-size: 18px; font-weight: 600; }
     .ticker li::before { width: 8px; height: 8px; }
+
+    /* Download band and Try game day: their own colours instead of flat white. */
+    section#get { background: var(--turf); background-image: repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 90px,rgba(0,0,0,.04) 90px 180px); border-top:3px solid var(--navy); border-bottom:3px solid var(--navy); padding: 56px 0; }
+    section#get .head h2 { color: var(--chalk); font-size: clamp(36px, 4.6vw, 58px); }
+    section#get .head p { color: #E8F1EA; }
+    section#get .stores.dark .store { border-color: rgba(255,255,255,.35); }
+    section#get .more { border-top-color: rgba(255,255,255,.25) !important; }
+    section#get .more a { color: var(--chalk) !important; }
+    section.trygd { background: var(--turf-soft); padding: 64px 0; }
+    section.trygd .kick { color: var(--turf); }
+    section.trygd .head h2 { font-size: clamp(36px, 4.6vw, 58px); }
+    .gdgrid { display:grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items:center; }
+    .gdgrid .head { margin:0; }
+    .gdpoints { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:10px; }
+    .gdpoints li { padding-left:30px; position:relative; color:var(--navy); font-weight:600; }
+    .gdpoints li::before { content:"✓"; position:absolute; left:0; color:var(--turf); font-weight:800; }
+    section.trygd .gameday { max-width:none; }
+    @media (max-width: 1000px) { .gdgrid { grid-template-columns: 1fr; gap: 28px; } }
   </style>
 </head>
 <body>
@@ -673,11 +691,16 @@
       </div>
     </section>
 
-    <div class="wrap morehead"><div class="head" style="margin-bottom:0"><h2>More to explore</h2><p>Have a go with the demos below, or grab a flyer for your club.</p></div></div>
 
     <section class="trygd" aria-labelledby="trygd-h">
       <div class="wrap">
-        <div class="head"><h2 id="trygd-h">Try game day</h2><p>Press play and watch Sunday nets come together, minute by minute.</p></div>
+        <div class="gdgrid">
+        <div class="head">
+          <span class="kick">More to explore · have a go</span>
+          <h2 id="trygd-h">Try game day</h2>
+          <p>Press play and watch Sunday nets come together, minute by minute.</p>
+          <ul class="gdpoints"><li>30-minute check-in goes to everyone</li><li>See who's here, on the way or running late</li><li>Know who can't make it before you start</li></ul>
+        </div>
         <article class="gameday" aria-label="Try it: game day for Sunday nets">
         <div class="gd-head">
           <div>
@@ -708,6 +731,7 @@
           <div class="gd-summary"><span class="count" id="count"></span><span class="hint" id="hint">Drag the slider or press play</span></div>
         </div>
       </article>
+        </div>
       </div>
     </section>
 
