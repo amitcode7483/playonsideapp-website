@@ -338,9 +338,52 @@
       .gd-summary { flex-direction: column; gap: 2px; }
     }
     @media (prefers-reduced-motion: reduce) { .checkin, .avatar, .opt .bar i, .quiet-list li { transition: none; } .ticker .track { animation: none; } }
+
+    /* Sticky menu + get-the-app, the three reasons, who it's for, and the phone bar. */
+    .nav { position: sticky; top: 0; z-index: 50; background: rgba(20,36,58,.96); backdrop-filter: blur(8px); }
+    .nav .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; height:58px; }
+    .nav .links { display:flex; gap:22px; overflow-x:auto; scrollbar-width:none; }
+    .nav .links a { color:#C9D2DF; text-decoration:none; font-weight:600; font-size:15px; white-space:nowrap; }
+    .nav .links a:hover { color:#fff; }
+    .nav .get { background:#FFD166; color:var(--navy); font-weight:800; text-decoration:none; border-radius:999px; padding:9px 18px; font-size:15px; white-space:nowrap; }
+    .getbar { display:none; }
+    @media (max-width: 720px) {
+      .nav .get { display:none; } .nav .links { gap:18px; } .nav .wrap { height:50px; }
+      .gameday { display:none; }
+      .hero-sports, .top a.follow { display:none; }
+      .hero { padding-bottom: 36px; }
+      .getbar { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:60; gap:10px; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:rgba(20,36,58,.97); }
+      .getbar a { flex:1; text-align:center; text-decoration:none; background:#000; color:#fff; border:1.5px solid rgba(255,255,255,.35); border-radius:14px; padding:9px 6px; font-weight:700; font-size:15px; }
+      .getbar a small { display:block; font-size:10px; font-weight:500; opacity:.8; }
+      footer.site { padding-bottom: 90px; }
+    }
+    section.reasons .rs { list-style:none; margin:24px 0 0; padding:0; display:grid; gap:18px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .reasons .rs li { background:var(--paper); border:2px solid var(--navy); border-radius:24px; overflow:hidden; display:flex; flex-direction:column; }
+    .reasons .rs .txt { padding:20px 22px 10px; }
+    .reasons .rs h3 { margin:0 0 6px; font-size:24px; color:var(--navy); }
+    .reasons .rs p { margin:0; color:var(--muted); line-height:1.5; }
+    .reasons .rs .shot { margin-top:auto; height:330px; overflow:hidden; padding:0 30px; }
+    .reasons .rs .shot img { width:100%; height:auto; display:block; border-radius:18px 18px 0 0; border:3px solid var(--navy); border-bottom:0; }
+    @media (max-width: 900px) { section.reasons .rs { grid-template-columns:1fr; } .reasons .rs .shot { height:260px; } }
+    section.forall { background: var(--turf-soft); }
+    .forall .fa { list-style:none; margin:24px 0 0; padding:0; display:grid; gap:16px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .forall .fa li { background:var(--paper); border-radius:20px; padding:22px; border:1.5px solid var(--line); }
+    .forall .fa .em { font-size:34px; line-height:1; }
+    .forall .fa h3 { margin:10px 0 6px; font-size:22px; color:var(--navy); }
+    .forall .fa p { margin:0; color:var(--muted); line-height:1.5; }
+    @media (max-width: 900px) { .forall .fa { grid-template-columns:1fr; } }
+    .morehead { padding-top:24px; }
+    .morehead h2 { color: var(--muted); }
+    html { scroll-padding-top: 70px; }
   </style>
 </head>
 <body>
+  <nav class="nav" aria-label="Sections">
+    <div class="wrap">
+      <div class="links"><a href="#watch">Watch</a><a href="#features">Features</a><a href="#forall">Who it's for</a><a href="#story">Our story</a><a href="/help/">Help</a></div>
+      <a class="get" href="#get">Get the app</a>
+    </div>
+  </nav>
   <div class="field">
     <header class="top">
       <div class="wrap">
@@ -359,6 +402,7 @@
         <ul class="hero-sports" aria-label="Sports in Play Onside">
           <li><a href="#sports-h" data-sport="Cricket">🏏 Cricket</a></li><li><a href="#sports-h" data-sport="Badminton">🏸 Badminton</a></li><li><a href="#sports-h" data-sport="Tennis">🎾 Tennis</a></li>
           <li><a href="#sports-h" data-sport="Football">⚽ Football</a></li><li><a href="#sports-h" data-sport="Golf">⛳ Golf</a></li><li><a href="#sports-h" data-sport="Bowling">🎳 Bowling</a></li>
+          <li><a href="#forall">🏋️ Gym</a></li><li><a href="#forall">🏃 Running</a></li><li><a href="#forall">🧘 Yoga</a></li>
         </ul>
         <div class="stores">
           <a class="store" href="https://apps.apple.com/app/play-onside/id6830015365" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.5 2-3.7 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9C6.1 7 4.5 8 3.7 9.5 1.9 12.6 3.2 17.2 5 19.7c.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.4zM14 5.1c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span><small>Download on the</small>App Store</span></a>
@@ -477,6 +521,101 @@
         </div>
       </div>
     </section>
+
+    <section class="reasons" id="features" aria-labelledby="reasons-h">
+      <div class="wrap">
+        <div class="head" style="margin-bottom:0">
+          <h2 id="reasons-h">Three things your group chat can't do</h2>
+          <p>Real screens from the app.</p>
+        </div>
+        <ul class="rs">
+          <li><div class="txt"><h3>✅ See who's really coming</h3><p>Everyone taps In, Maybe or Out. A real count, a waitlist when it's full, and one tap nudges the quiet ones.</p></div><div class="shot"><img src="/media/app/game.jpg" width="390" height="844" loading="lazy" decoding="async" alt="A game page: who's really coming, with In, Maybe and Out" /></div></li>
+          <li><div class="txt"><h3>🔔 Buzz the late ones</h3><p>On game day, see who's here and who's on the way. Buzz anyone who isn't moving yet.</p></div><div class="shot"><img src="/media/app/on-my-way.jpg" width="390" height="844" loading="lazy" decoding="async" alt="On my way: who's here, who's on the way, with a Buzz button" /></div></li>
+          <li><div class="txt"><h3>🙏 Ask the boss, officially</h3><p>Need the OK at home? Pick what you'll offer and send a very formal leave application. The boss answers with one tap.</p></div><div class="shot"><img src="/media/app/leave.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Leave pass: pick what you'll offer, then send to the boss" /></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="forall" id="forall" aria-labelledby="forall-h">
+      <div class="wrap">
+        <div class="head" style="margin-bottom:0">
+          <h2 id="forall-h">For your team, your gym buddy and your class</h2>
+        </div>
+        <ul class="fa">
+          <li><div class="em">🏏⚽🏸</div><h3>Team sports</h3><p>Cricket, football, badminton, tennis, golf and bowling. Plan the game, pick the team, split the ground fee, and head to the pub after.</p></li>
+          <li><div class="em">🏋️🏃🧘</div><h3>Gym, running and yoga</h3><p>Find a buddy near you or plan a group session. Pick 1 buddy or a whole run club, and say what to bring.</p></li>
+          <li><div class="em">🎓</div><h3>Coaches and trainers</h3><p>Open your class to everyone nearby. People sign up straight away, and you see who's coming. Free to list: in the app, Me → Become a coach.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="story" id="story" aria-labelledby="story-h">
+      <style>
+        section.story { background: var(--navy); color: var(--chalk); }
+        .story .head h2 { color: var(--chalk); }
+        .story .head p { color: #C9D2DF; max-width: 760px; }
+        .story .eyebrow { display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#FFD166; margin-bottom:10px; }
+        .story .sgrid { list-style:none; margin:28px 0 0; padding:0; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .story .sgrid li { background: var(--navy-soft); border-radius:20px; padding:24px; }
+        .story .sgrid h3 { margin:0 0 8px; font-size:22px; color:#fff; }
+        .story .sgrid p { margin:0; color:#C9D2DF; line-height:1.55; }
+        .story .promise { list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; }
+        .story .promise li { background:none; padding:0 0 0 28px; position:relative; border-radius:0; color:#DDE4EE; line-height:1.45; }
+        .story .promise li::before { content:"✓"; position:absolute; left:0; color:#5FD38D; font-weight:800; }
+        .story .sign { margin-top:24px; color:#C9D2DF; font-size:15px; }
+      </style>
+      <div class="wrap">
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">Our story</span>
+          <h2 id="story-h">Group chats are great for talking. They were never built to run a game.</h2>
+          <p>Play Onside started on a Sydney cricket ground. Every week, the game message got buried under birthday wishes, memes and "anyone selling a couch?". Eleven people said they were in, seven turned up, and the captain spent Friday night counting thumbs. So we built the app we wanted for our own team.</p>
+        </div>
+        <ul class="sgrid">
+          <li>
+            <h3>💬 Keep your group chat</h3>
+            <p>We're not here to replace it. Keep it for the banter. Play Onside does the organising: In, Maybe or Out, a real count of who's coming, a nudge for the quiet ones, and who's on the way on the day.</p>
+          </li>
+          <li>
+            <h3>🛡️ Your details stay yours</h3>
+            <ul class="promise">
+              <li>We don't sell your information, and there are no targeted ads.</li>
+              <li>We don't track you across other apps or websites.</li>
+              <li>Others see your suburb, never your address. Location is only used when you tap to share it.</li>
+              <li>Stored on servers in Sydney, sent over encrypted connections.</li>
+              <li>Adults only (18+). Block or report anyone, and we look at every report within 24 hours.</li>
+              <li>Delete your account any time, right in the app.</li>
+            </ul>
+          </li>
+          <li>
+            <h3>🏏 We only care about your game</h3>
+            <p>No feeds to scroll, no follower counts, nothing to keep you hooked. Plan the game, see who's really coming, get everyone on the field, and get back to your life. Cricket, football, badminton, tennis, golf, bowling, gym, running and yoga.</p>
+          </li>
+        </ul>
+        <p class="sign">Made in Sydney by Virtuous Solutions Pty Ltd. Questions? <a href="mailto:playonsideapp@gmail.com" style="color:#FFD166">playonsideapp@gmail.com</a> · Read our <a href="/privacy/" style="color:#FFD166">privacy policy</a>.</p>
+      </div>
+    </section>
+
+    <section id="get" aria-labelledby="launch-h">
+      <div class="wrap launch">
+        <div class="head" style="margin-bottom:0">
+          <h2 id="launch-h">Out now in 4 countries</h2>
+          <p>Free on iPhone and Android, for six sports plus gym, running and yoga, in Australia, New Zealand, India and the US. Made in Sydney. For players aged 18 and over.</p>
+        </div>
+        <div class="actions">
+          <div class="stores dark">
+            <a class="store" href="https://apps.apple.com/app/play-onside/id6830015365" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.5 2-3.7 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9C6.1 7 4.5 8 3.7 9.5 1.9 12.6 3.2 17.2 5 19.7c.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.4zM14 5.1c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span><small>Download on the</small>App Store</span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.playonsideapp.app" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 2.6 14.2 12 4 21.4c-.4-.2-.7-.7-.7-1.2V3.8c0-.5.3-1 .7-1.2zm11.4 10.6 2.6 2.4-11.6 6.6 9-9zm0-2.4-9-9 11.6 6.6-2.6 2.4zm1.2 1.2 3-2.8 2.2 1.3c.9.5.9 1.6 0 2.1l-2.2 1.3-3-1.9z"/></svg><span><small>Get it on</small>Google Play</span></a>
+          </div>
+          <div class="more">
+            <a href="https://www.instagram.com/playonsideapp/" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Follow on Instagram</a>
+            <a href="mailto:playonsideapp@gmail.com"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Email us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap morehead"><div class="head" style="margin-bottom:0"><h2>More to explore</h2><p>Have a go with the demos below, or grab a flyer for your club.</p></div></div>
+
 
     <section class="sports" aria-labelledby="sports-h">
       <div class="wrap">
@@ -642,70 +781,7 @@
       </div>
     </section>
 
-    <section class="story" id="story" aria-labelledby="story-h">
-      <style>
-        section.story { background: var(--navy); color: var(--chalk); }
-        .story .head h2 { color: var(--chalk); }
-        .story .head p { color: #C9D2DF; max-width: 760px; }
-        .story .eyebrow { display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#FFD166; margin-bottom:10px; }
-        .story .sgrid { list-style:none; margin:28px 0 0; padding:0; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-        .story .sgrid li { background: var(--navy-soft); border-radius:20px; padding:24px; }
-        .story .sgrid h3 { margin:0 0 8px; font-size:22px; color:#fff; }
-        .story .sgrid p { margin:0; color:#C9D2DF; line-height:1.55; }
-        .story .promise { list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; }
-        .story .promise li { background:none; padding:0 0 0 28px; position:relative; border-radius:0; color:#DDE4EE; line-height:1.45; }
-        .story .promise li::before { content:"✓"; position:absolute; left:0; color:#5FD38D; font-weight:800; }
-        .story .sign { margin-top:24px; color:#C9D2DF; font-size:15px; }
-      </style>
-      <div class="wrap">
-        <div class="head" style="margin-bottom:0">
-          <span class="eyebrow">Our story</span>
-          <h2 id="story-h">Group chats are great for talking. They were never built to run a game.</h2>
-          <p>Play Onside started on a Sydney cricket ground. Every week, the game message got buried under birthday wishes, memes and "anyone selling a couch?". Eleven people said they were in, seven turned up, and the captain spent Friday night counting thumbs. So we built the app we wanted for our own team.</p>
-        </div>
-        <ul class="sgrid">
-          <li>
-            <h3>💬 Keep your group chat</h3>
-            <p>We're not here to replace it. Keep it for the banter. Play Onside does the organising: In, Maybe or Out, a real count of who's coming, a nudge for the quiet ones, and who's on the way on the day.</p>
-          </li>
-          <li>
-            <h3>🛡️ Your details stay yours</h3>
-            <ul class="promise">
-              <li>We don't sell your information, and there are no targeted ads.</li>
-              <li>We don't track you across other apps or websites.</li>
-              <li>Others see your suburb, never your address. Location is only used when you tap to share it.</li>
-              <li>Stored on servers in Sydney, sent over encrypted connections.</li>
-              <li>Adults only (18+). Block or report anyone, and we look at every report within 24 hours.</li>
-              <li>Delete your account any time, right in the app.</li>
-            </ul>
-          </li>
-          <li>
-            <h3>🏏 We only care about your game</h3>
-            <p>No feeds to scroll, no follower counts, nothing to keep you hooked. Plan the game, see who's really coming, get everyone on the field, and get back to your life. Cricket, football, badminton, tennis, golf, bowling, gym, running and yoga.</p>
-          </li>
-        </ul>
-        <p class="sign">Made in Sydney by Virtuous Solutions Pty Ltd. Questions? <a href="mailto:playonsideapp@gmail.com" style="color:#FFD166">playonsideapp@gmail.com</a> · Read our <a href="/privacy/" style="color:#FFD166">privacy policy</a>.</p>
-      </div>
-    </section>
 
-    <section aria-labelledby="launch-h">
-      <div class="wrap launch">
-        <div class="head" style="margin-bottom:0">
-          <h2 id="launch-h">Out now in 4 countries</h2>
-          <p>Free on iPhone and Android, for six sports plus gym, running and yoga, in Australia, New Zealand, India and the US. Made in Sydney. For players aged 18 and over.</p>
-        </div>
-        <div class="actions">
-          <div class="stores dark">
-            <a class="store" href="https://apps.apple.com/app/play-onside/id6830015365" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.5 2-3.7 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9C6.1 7 4.5 8 3.7 9.5 1.9 12.6 3.2 17.2 5 19.7c.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.4zM14 5.1c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span><small>Download on the</small>App Store</span></a>
-            <a class="store" href="https://play.google.com/store/apps/details?id=com.playonsideapp.app" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 2.6 14.2 12 4 21.4c-.4-.2-.7-.7-.7-1.2V3.8c0-.5.3-1 .7-1.2zm11.4 10.6 2.6 2.4-11.6 6.6 9-9zm0-2.4-9-9 11.6 6.6-2.6 2.4zm1.2 1.2 3-2.8 2.2 1.3c.9.5.9 1.6 0 2.1l-2.2 1.3-3-1.9z"/></svg><span><small>Get it on</small>Google Play</span></a>
-          </div>
-          <div class="more">
-            <a href="https://www.instagram.com/playonsideapp/" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>Follow on Instagram</a>
-            <a href="mailto:playonsideapp@gmail.com"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Email us</a>
-          </div>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -949,5 +1025,6 @@
     document.querySelectorAll('.hero-sports a[data-sport]').forEach((a) => a.addEventListener('click', () => pick(a.dataset.sport)));
   })();
   </script>
+  <div class="getbar" role="complementary" aria-label="Get the app"><a href="https://apps.apple.com/app/play-onside/id6830015365" rel="noopener"><small>Download on the</small>App Store</a><a href="https://play.google.com/store/apps/details?id=com.playonsideapp.app" rel="noopener"><small>Get it on</small>Google Play</a></div>
 </body>
 </html>
