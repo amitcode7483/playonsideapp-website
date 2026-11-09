@@ -467,6 +467,15 @@
     .gdpoints li::before { content:"✓"; position:absolute; left:0; color:var(--turf); font-weight:800; }
     section.trygd .gameday { max-width:none; }
     @media (max-width: 1000px) { .gdgrid { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* Sport picker now lives inside "Who it's for". */
+    .sportpick { margin-top: 32px; background: var(--paper); border: 2px solid var(--navy); border-radius: 24px; padding: 24px; box-shadow: 6px 6px 0 var(--navy); }
+    .sportpick h3 { margin: 0 0 14px; font-size: 22px; color: var(--navy); }
+    .sportpick .switch button, .sportpick .switch a { font-size: 17px; padding: 8px 18px; min-height: 0; }
+    .sportpick #sport-title { font-size: 34px; }
+    .sportpick .stage { grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; align-items: center; }
+    .sportpick .pitch { max-height: 300px; }
+    @media (max-width: 900px) { .sportpick .stage { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -623,6 +632,18 @@
           <li><div class="em">🏋️🏃🧘</div><h3>Gym, running and yoga</h3><p>Find a buddy near you or plan a group session. Pick 1 buddy or a whole run club, and say what to bring.</p></li>
           <li><div class="em">🎓</div><h3>Coaches and trainers</h3><p>Open your class to everyone nearby. People sign up straight away, and you see who's coming. Free to list: in the app, Me → Become a coach.</p></li>
         </ul>
+        <div class="sportpick">
+          <h3 id="sports-h">Pick a sport to see how it works</h3>
+          <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
+        <div class="stage">
+          <div class="pitch" id="pitch" aria-hidden="true"></div>
+          <div>
+            <h3 id="sport-title"></h3>
+            <p class="eg" id="sport-eg"></p>
+            <div class="who" id="sport-who"></div>
+          </div>
+        </div>
+        </div>
       </div>
     </section>
 
@@ -736,23 +757,6 @@
     </section>
 
 
-    <section class="sports" aria-labelledby="sports-h">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="sports-h">Six sports, plus gym, running and yoga</h2>
-          <p>Pick a sport to see how it works. Gym, running and yoga sessions work the same way, with a buddy or a group.</p>
-        </div>
-        <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
-        <div class="stage">
-          <div class="pitch" id="pitch" aria-hidden="true"></div>
-          <div>
-            <h3 id="sport-title"></h3>
-            <p class="eg" id="sport-eg"></p>
-            <div class="who" id="sport-who"></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="screens" aria-labelledby="screens-h">
       <div class="wrap">
