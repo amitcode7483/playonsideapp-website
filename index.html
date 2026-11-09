@@ -476,6 +476,27 @@
     .sportpick .stage { grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; align-items: center; }
     .sportpick .pitch { max-height: 300px; }
     @media (max-width: 900px) { .sportpick .stage { grid-template-columns: 1fr; } }
+
+    /* "More to explore": the demos and extras fold away so the page ends at the download band. */
+    details.explore { border-top: 3px solid var(--navy); }
+    details.explore > summary { list-style: none; cursor: pointer; background: var(--chalk); padding: 34px 0; }
+    details.explore > summary::-webkit-details-marker { display: none; }
+    details.explore > summary .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .explore .ex-t { display:flex; flex-direction:column; gap:4px; }
+    .explore .ex-t .kick { color: var(--turf); margin:0; }
+    .explore .ex-t b { font-size: 24px; color: var(--navy); }
+    .explore .ex-sub { color: var(--muted); font-size: 15px; }
+    .explore .ex-btn { background: var(--navy); color: var(--chalk); font-weight: 800; border-radius: 999px; padding: 12px 22px; white-space:nowrap; }
+    .explore .ex-btn i { font-style: normal; display:inline-block; transition: transform .2s; }
+    details.explore[open] .ex-btn i { transform: rotate(180deg); }
+    details.explore[open] .ex-btn::before { content: ""; }
+    details.explore[open] > summary { border-bottom: 3px solid var(--navy); }
+
+    .reasons .rs .shot { height: 230px !important; }
+    section.story .sgrid li { padding: 18px 20px; }
+    section.story, section.forall, section.reasons, section.reels { padding: 48px 0; }
+    section.sportsx { padding: 40px 0 8px; }
+    @media (max-width: 720px) { .reasons .rs .shot { height: 190px !important; } section.story, section.forall, section.reasons, section.reels { padding: 36px 0; } .reels .rgrid { gap: 12px; } }
   </style>
 </head>
 <body>
@@ -632,18 +653,6 @@
           <li><div class="em">🏋️🏃🧘</div><h3>Gym, running and yoga</h3><p>Find a buddy near you or plan a group session. Pick 1 buddy or a whole run club, and say what to bring.</p></li>
           <li><div class="em">🎓</div><h3>Coaches and trainers</h3><p>Open your class to everyone nearby. People sign up straight away, and you see who's coming. Free to list: in the app, Me → Become a coach.</p></li>
         </ul>
-        <div class="sportpick">
-          <h3 id="sports-h">Pick a sport to see how it works</h3>
-          <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
-        <div class="stage">
-          <div class="pitch" id="pitch" aria-hidden="true"></div>
-          <div>
-            <h3 id="sport-title"></h3>
-            <p class="eg" id="sport-eg"></p>
-            <div class="who" id="sport-who"></div>
-          </div>
-        </div>
-        </div>
       </div>
     </section>
 
@@ -713,6 +722,24 @@
     </section>
 
 
+    <details class="explore" id="explore">
+      <summary>
+        <span class="wrap"><span class="ex-t"><span class="kick">More to explore</span><b>Pick your sport, try the demos, grab a club flyer</b><span class="ex-sub">Every sport · game day · real app screens · new this season · pick a time · the debrief · flyers</span></span><span class="ex-btn">Show more <i>⌄</i></span></span>
+      </summary>
+    <section class="sportsx"><div class="wrap">
+        <div class="sportpick">
+          <h3 id="sports-h">Pick a sport to see how it works</h3>
+          <div class="switch" role="group" aria-label="Choose a sport" id="switch"></div>
+        <div class="stage">
+          <div class="pitch" id="pitch" aria-hidden="true"></div>
+          <div>
+            <h3 id="sport-title"></h3>
+            <p class="eg" id="sport-eg"></p>
+            <div class="who" id="sport-who"></div>
+          </div>
+        </div>
+        </div>
+    </div></section>
     <section class="trygd" aria-labelledby="trygd-h">
       <div class="wrap">
         <div class="gdgrid">
@@ -906,6 +933,7 @@
 
 
 
+    </details>
   </main>
 
   <footer class="site">
