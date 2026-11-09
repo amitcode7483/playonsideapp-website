@@ -607,12 +607,49 @@
       </div>
     </section>
 
-    <section aria-labelledby="chat-h">
+    <section class="story" id="story" aria-labelledby="story-h">
+      <style>
+        section.story { background: var(--navy); color: var(--chalk); }
+        .story .head h2 { color: var(--chalk); }
+        .story .head p { color: #C9D2DF; max-width: 760px; }
+        .story .eyebrow { display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#FFD166; margin-bottom:10px; }
+        .story .sgrid { list-style:none; margin:28px 0 0; padding:0; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .story .sgrid li { background: var(--navy-soft); border-radius:20px; padding:24px; }
+        .story .sgrid h3 { margin:0 0 8px; font-size:22px; color:#fff; }
+        .story .sgrid p { margin:0; color:#C9D2DF; line-height:1.55; }
+        .story .promise { list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; }
+        .story .promise li { background:none; padding:0 0 0 28px; position:relative; border-radius:0; color:#DDE4EE; line-height:1.45; }
+        .story .promise li::before { content:"✓"; position:absolute; left:0; color:#5FD38D; font-weight:800; }
+        .story .sign { margin-top:24px; color:#C9D2DF; font-size:15px; }
+      </style>
       <div class="wrap">
         <div class="head" style="margin-bottom:0">
-          <h2 id="chat-h">Does it replace our WhatsApp group?</h2>
-          <p>No. Keep your group chat for the banter. Play Onside does the organising: everyone answers In, Maybe or Out, you see a real count of who&#x27;s coming, the quiet ones get a nudge from the app (not from you), and on the day you can see who&#x27;s on the way. No more game message buried under birthdays and memes.</p>
+          <span class="eyebrow">Our story</span>
+          <h2 id="story-h">Group chats are great for talking. They were never built to run a game.</h2>
+          <p>Play Onside started on a Sydney cricket ground. Every week, the game message got buried under birthday wishes, memes and "anyone selling a couch?". Eleven people said they were in, seven turned up, and the captain spent Friday night counting thumbs. So we built the app we wanted for our own team.</p>
         </div>
+        <ul class="sgrid">
+          <li>
+            <h3>💬 Keep your group chat</h3>
+            <p>We're not here to replace it. Keep it for the banter. Play Onside does the organising: In, Maybe or Out, a real count of who's coming, a nudge for the quiet ones, and who's on the way on the day.</p>
+          </li>
+          <li>
+            <h3>🛡️ Your details stay yours</h3>
+            <ul class="promise">
+              <li>We don't sell your information, and there are no targeted ads.</li>
+              <li>We don't track you across other apps or websites.</li>
+              <li>Others see your suburb, never your address. Location is only used when you tap to share it.</li>
+              <li>Stored on servers in Sydney, sent over encrypted connections.</li>
+              <li>Adults only (18+). Block or report anyone, and we look at every report within 24 hours.</li>
+              <li>Delete your account any time, right in the app.</li>
+            </ul>
+          </li>
+          <li>
+            <h3>🏏 We only care about your game</h3>
+            <p>No feeds to scroll, no follower counts, nothing to keep you hooked. Plan the game, see who's really coming, get everyone on the field, and get back to your life. Cricket, football, badminton, tennis, golf, bowling, gym, running and yoga.</p>
+          </li>
+        </ul>
+        <p class="sign">Made in Sydney by Virtuous Solutions Pty Ltd. Questions? <a href="mailto:playonsideapp@gmail.com" style="color:#FFD166">playonsideapp@gmail.com</a> · Read our <a href="/privacy/" style="color:#FFD166">privacy policy</a>.</p>
       </div>
     </section>
 
