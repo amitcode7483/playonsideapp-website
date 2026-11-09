@@ -443,6 +443,41 @@
   </div>
 
   <main>
+    <section class="reels" id="watch" aria-labelledby="reels-h">
+      <style>
+        .reels .rgrid { display:grid; gap:18px; grid-template-columns: repeat(4, minmax(0,1fr)); margin-top:24px; }
+        .reels figure { margin:0; }
+        .reels video { width:100%; height:auto; aspect-ratio:9/16; border-radius:22px; background:var(--navy); border:3px solid var(--navy); display:block; }
+        .reels figcaption { margin-top:10px; color:var(--muted); font-size:15px; line-height:1.4; }
+        .reels figcaption b { display:block; color:var(--navy); font-size:17px; }
+        @media (max-width: 900px) { .reels .rgrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+      </style>
+      <div class="wrap">
+        <div class="head" style="margin-bottom:0">
+          <h2 id="reels-h">Watch it in 15 seconds</h2>
+          <p>Sound on. Real app screens, our own music.</p>
+        </div>
+        <div class="rgrid">
+          <figure>
+            <video controls playsinline preload="none" poster="/media/reels/group-chat.jpg" width="720" height="1280"><source src="/media/reels/group-chat.mp4" type="video/mp4" />Your browser can't play this video.</video>
+            <figcaption><b>Keep the chat. Lose the chaos.</b> The game message, buried again.</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="none" poster="/media/reels/eleven-said-in.jpg" width="720" height="1280"><source src="/media/reels/eleven-said-in.mp4" type="video/mp4" />Your browser can't play this video.</video>
+            <figcaption><b>11 said in. 7 turned up.</b> See who's really coming, and buzz the rest.</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="none" poster="/media/reels/gym-buddy.jpg" width="720" height="1280"><source src="/media/reels/gym-buddy.mp4" type="video/mp4" />Your browser can't play this video.</video>
+            <figcaption><b>Snooze. Snooze. Snooze.</b> A gym buddy who's waiting for you.</figcaption>
+          </figure>
+          <figure>
+            <video controls playsinline preload="none" poster="/media/reels/host-your-class.jpg" width="720" height="1280"><source src="/media/reels/host-your-class.mp4" type="video/mp4" />Your browser can't play this video.</video>
+            <figcaption><b>Teaching yoga to 3 people?</b> Coaches: open your class to everyone nearby.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="sports" aria-labelledby="sports-h">
       <div class="wrap">
         <div class="head">
@@ -602,41 +637,6 @@
           <figure class="flyer f2">
             <a href="/media/flyers/Play-Onside-Flyer-4-page.pdf" aria-label="Download the 4-page flyer (PDF)"><img src="/media/flyers/flyer-p2.jpg" width="794" height="1123" loading="lazy" decoding="async" alt="Play Onside flyer: from who's in to the first ball" /></a>
             <figcaption><b>4-page flyer</b><span>Plus pages for captains and players · 1.4 MB</span><a class="dl" href="/media/flyers/Play-Onside-Flyer-4-page.pdf" download>Download PDF</a></figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="reels" aria-labelledby="reels-h">
-      <style>
-        .reels .rgrid { display:grid; gap:18px; grid-template-columns: repeat(4, minmax(0,1fr)); margin-top:24px; }
-        .reels figure { margin:0; }
-        .reels video { width:100%; height:auto; aspect-ratio:9/16; border-radius:22px; background:var(--navy); border:3px solid var(--navy); display:block; }
-        .reels figcaption { margin-top:10px; color:var(--muted); font-size:15px; line-height:1.4; }
-        .reels figcaption b { display:block; color:var(--navy); font-size:17px; }
-        @media (max-width: 900px) { .reels .rgrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-      </style>
-      <div class="wrap">
-        <div class="head" style="margin-bottom:0">
-          <h2 id="reels-h">Watch it in 15 seconds</h2>
-          <p>Sound on. Real app screens, our own music.</p>
-        </div>
-        <div class="rgrid">
-          <figure>
-            <video controls playsinline preload="none" poster="/media/reels/group-chat.jpg" width="720" height="1280"><source src="/media/reels/group-chat.mp4" type="video/mp4" />Your browser can't play this video.</video>
-            <figcaption><b>Keep the chat. Lose the chaos.</b> The game message, buried again.</figcaption>
-          </figure>
-          <figure>
-            <video controls playsinline preload="none" poster="/media/reels/eleven-said-in.jpg" width="720" height="1280"><source src="/media/reels/eleven-said-in.mp4" type="video/mp4" />Your browser can't play this video.</video>
-            <figcaption><b>11 said in. 7 turned up.</b> See who's really coming, and buzz the rest.</figcaption>
-          </figure>
-          <figure>
-            <video controls playsinline preload="none" poster="/media/reels/gym-buddy.jpg" width="720" height="1280"><source src="/media/reels/gym-buddy.mp4" type="video/mp4" />Your browser can't play this video.</video>
-            <figcaption><b>Snooze. Snooze. Snooze.</b> A gym buddy who's waiting for you.</figcaption>
-          </figure>
-          <figure>
-            <video controls playsinline preload="none" poster="/media/reels/host-your-class.jpg" width="720" height="1280"><source src="/media/reels/host-your-class.mp4" type="video/mp4" />Your browser can't play this video.</video>
-            <figcaption><b>Teaching yoga to 3 people?</b> Coaches: open your class to everyone nearby.</figcaption>
           </figure>
         </div>
       </div>
