@@ -443,6 +443,10 @@
     section.forall .kick { color: var(--turf); }
     .forall .fa li { border: 2px solid var(--navy); box-shadow: 5px 5px 0 var(--navy); }
     @media (max-width: 720px) { section.reels, section.reasons, section.forall { padding: 40px 0; } .reasons .rs .shot { height: 240px; } }
+
+    /* Ticker: a yellow strip so it doesn't merge into the navy reels band. */
+    .ticker { background: #FFD166; color: var(--navy); border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy); }
+    .ticker li::before { background: var(--navy); }
   </style>
 </head>
 <body>
