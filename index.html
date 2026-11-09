@@ -419,6 +419,30 @@
     @media (max-width: 1000px) { .heroshow .bub.l { left:-60px; } .heroshow .bub.r { right:-60px; } }
     @media (max-width: 720px) { .heroshow .bub { font-size:11px; padding:7px 10px; } .heroshow .bub b { font-size:13px; } .heroshow .bub.l { left:-34px; } .heroshow .bub.r { right:-34px; } .heroshow .bub.live { right:-14px; } }
     @media (prefers-reduced-motion: reduce) { .heroshow .bub { animation:none; } .heroshow .bub[style*="--i:0"] { opacity:1; } }
+
+    /* Uplift: each top section gets its own band, tighter spacing, smaller headings. */
+    section.reels, section.reasons, section.forall { padding: 56px 0; }
+    section.reels .head h2, section.reasons .head h2, section.forall .head h2, section.story .head h2 { font-size: clamp(34px, 4.4vw, 54px); }
+    .kick { display:inline-block; font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; }
+    section.reels { background: var(--navy); }
+    section.reels .head h2 { color: var(--chalk); }
+    section.reels .head p { color:#C9D2DF; }
+    section.reels .kick { color:#FFD166; }
+    section.reels figcaption { color:#AFC0D6; }
+    section.reels figcaption b { color:#fff; }
+    section.reels video { border-color:#2B3B52; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+    section.reasons { background: var(--chalk); border-bottom: 3px solid var(--navy); }
+    section.reasons .kick { color: var(--turf); }
+    .reasons .rs li { box-shadow: 6px 6px 0 var(--navy); border-width: 2.5px; }
+    .reasons .rs li:nth-child(1) { border-top: 10px solid #2E9E5B; }
+    .reasons .rs li:nth-child(2) { border-top: 10px solid #E2A11B; }
+    .reasons .rs li:nth-child(3) { border-top: 10px solid #B3261E; }
+    .reasons .rs .shot { background: var(--turf-soft); padding: 18px 30px 0; height: 300px; }
+    .reasons .rs .txt { padding: 18px 22px 16px; }
+    section.forall { border-bottom: 3px solid var(--navy); }
+    section.forall .kick { color: var(--turf); }
+    .forall .fa li { border: 2px solid var(--navy); box-shadow: 5px 5px 0 var(--navy); }
+    @media (max-width: 720px) { section.reels, section.reasons, section.forall { padding: 40px 0; } .reasons .rs .shot { height: 240px; } }
   </style>
 </head>
 <body>
@@ -524,8 +548,9 @@
       </style>
       <div class="wrap">
         <div class="head" style="margin-bottom:0">
+          <span class="kick">15-second reels · sound on</span>
           <h2 id="reels-h">Watch it in 15 seconds</h2>
-          <p>Sound on. Real app screens, our own music.</p>
+          <p>Real app screens, our own music.</p>
         </div>
         <div class="rgrid">
           <figure>
@@ -551,6 +576,7 @@
     <section class="reasons" id="features" aria-labelledby="reasons-h">
       <div class="wrap">
         <div class="head" style="margin-bottom:0">
+          <span class="kick">Features</span>
           <h2 id="reasons-h">Three things your group chat can't do</h2>
           <p>Real screens from the app.</p>
         </div>
@@ -565,6 +591,7 @@
     <section class="forall" id="forall" aria-labelledby="forall-h">
       <div class="wrap">
         <div class="head" style="margin-bottom:0">
+          <span class="kick">Who it's for</span>
           <h2 id="forall-h">For your team, your gym buddy and your class</h2>
         </div>
         <ul class="fa">
