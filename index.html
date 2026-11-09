@@ -498,6 +498,12 @@
     section.story, section.forall, section.reasons, section.reels { padding: 48px 0; }
     section.sportsx { padding: 40px 0 8px; }
     @media (max-width: 720px) { .reasons .rs .shot { height: 190px !important; } section.story, section.forall, section.reasons, section.reels { padding: 36px 0; } .reels .rgrid { gap: 12px; } }
+
+    /* Story cards: two even cards, then the privacy promises full width in columns. */
+    section.story .sgrid { grid-template-columns: 1fr 1fr !important; align-items: stretch !important; }
+    section.story .sgrid > li.wide { grid-column: 1 / -1; }
+    section.story .wide .promise { grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: 28px; row-gap: 12px; }
+    @media (max-width: 900px) { section.story .sgrid { grid-template-columns: 1fr !important; } section.story .wide .promise { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -684,6 +690,10 @@
             <p>Stop wasting energy in group chats: counting thumbs, scrolling for "who's in", chasing the quiet ones. In Play Onside your crew plans the game (In, Maybe or Out, a real count, a nudge for the quiet ones), sees who's on the way, and has its own chat for the banter and the trolling. Try it for one game and feel the difference.</p>
           </li>
           <li>
+            <h3>🏏 We only care about your game</h3>
+            <p>No feeds to scroll, no follower counts, nothing to keep you hooked. Plan the game, see who's really coming, get everyone on the field, and get back to your life. Cricket, football, badminton, tennis, golf, bowling, gym, running and yoga.</p>
+          </li>
+          <li class="wide">
             <h3>🛡️ Your details stay yours</h3>
             <ul class="promise">
               <li>We don't sell your information, and there are no targeted ads.</li>
@@ -693,10 +703,6 @@
               <li>Adults only (18+). Block or report anyone, and we look at every report within 24 hours.</li>
               <li>Delete your account any time, right in the app.</li>
             </ul>
-          </li>
-          <li>
-            <h3>🏏 We only care about your game</h3>
-            <p>No feeds to scroll, no follower counts, nothing to keep you hooked. Plan the game, see who's really coming, get everyone on the field, and get back to your life. Cricket, football, badminton, tennis, golf, bowling, gym, running and yoga.</p>
           </li>
         </ul>
         <p class="sign">Made in Sydney by Virtuous Solutions Pty Ltd. Questions? <a href="mailto:playonsideapp@gmail.com" style="color:#FFD166">playonsideapp@gmail.com</a> · Read our <a href="/privacy/" style="color:#FFD166">privacy policy</a>.</p>
