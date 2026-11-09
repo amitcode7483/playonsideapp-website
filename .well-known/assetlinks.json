@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.playonsideapp.app",
+      "sha256_cert_fingerprints": [
+        "D5:11:84:AC:6F:B6:14:D7:F2:E6:5A:66:F5:EC:54:E2:75:DD:BA:2B:92:57:FF:D4:19:12:FA:BF:2C:7A:51:7A"
+      ]
+    }
+  }
+]
