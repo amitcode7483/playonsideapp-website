@@ -27,6 +27,8 @@
     .sheet { background: var(--chalk); border-radius: 28px 28px 0 0; padding: 28px 24px 40px; display: flex; flex-direction: column; gap: 14px; max-width: 520px; width: 100%; margin: 0 auto; }
     .btn { display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 14px; background: var(--turf); color: #fff; font-weight: 700; font-size: 18px; text-decoration: none; }
     .btn:hover { background: var(--turf-dark); }
+    .btn.alt { background: #fff; color: var(--navy); border: 2px solid var(--navy); }
+    .btn.alt:hover { background: #EEF1EC; }
     .small { margin: 0; font-size: 15px; color: var(--muted); text-align: center; }
     .code { font-family: ui-monospace, Menlo, monospace; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; font-size: 28px; font-weight: 700; letter-spacing: 3px; color: var(--navy); user-select: all; word-break: break-all; }
     .bad { display: none; }
@@ -42,8 +44,9 @@
     <p class="ok">Your crew is using Play Onside to plan games and see who's really coming.</p>
   </div>
   <div class="sheet">
-    <a class="btn ok" id="open" href="playonside://join">Open in Play Onside</a>
-    <p class="small ok">Don't have the app yet? Get it free on the <a href="https://apps.apple.com/app/play-onside/id6830015365">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.playonsideapp.app">Google Play</a>. Once you have it, tap this link again, or in the app go to <strong>Circles → Join with a code</strong> and type:</p>
+    <a class="btn ok" id="open" href="playonside://join">I have the app: open it</a>
+    <a class="btn alt ok" id="get" href="https://playonsideapp.com/get/">Get Play Onside (free)</a>
+    <p class="small ok">Just installed it? Tap the invite link again, or in the app go to <strong>Circles → Join with a code</strong> and type:</p>
     <div class="code ok" id="code"></div>
     <p class="small bad">Ask whoever sent it for a new invite link.</p>
     <p class="small"><a href="../">What is Play Onside?</a></p>
@@ -53,10 +56,29 @@
       var c = new URLSearchParams(location.search).get('c') || '';
       if (!/^[A-Za-z0-9]{6,32}$/.test(c)) { document.body.classList.add('no-code'); return; }
       var app = 'playonside://join?c=' + c;
-      document.getElementById('open').href = app;
+      var ua = navigator.userAgent;
+      var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && 'ontouchend' in document);
+      var android = /Android/i.test(ua);
+      var appStore = 'https://apps.apple.com/app/play-onside/id6830015365';
+      var playStore = 'https://play.google.com/store/apps/details?id=com.playonsideapp.app';
+      var open = document.getElementById('open');
       document.getElementById('code').textContent = c.length === 8 ? c.slice(0, 4) + ' ' + c.slice(4) : c;
-      // Try the app straight away; if it isn't installed, the page simply stays.
-      setTimeout(function () { location.href = app; }, 300);
+      if (ios) document.getElementById('get').href = appStore;
+      if (android) {
+        // Android opens the app if it's there, and Google Play if it isn't: no error either way.
+        var intent = 'intent://join?c=' + c + '#Intent;scheme=playonside;package=com.playonsideapp.app;S.browser_fallback_url=' + encodeURIComponent(playStore) + ';end';
+        open.href = intent;
+        document.getElementById('get').href = playStore;
+        setTimeout(function () { location.href = intent; }, 300);
+      } else {
+        // iPhone: never open the app by itself (Safari shows "address is invalid" when it isn't installed).
+        // When they tap, and the app doesn't open, go to the App Store.
+        open.href = app;
+        open.addEventListener('click', function () {
+          var t = setTimeout(function () { if (!document.hidden && ios) location.href = appStore; }, 1600);
+          document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(t); }, { once: true });
+        });
+      }
     })();
   </script>
 </body>
